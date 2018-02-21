@@ -17,7 +17,7 @@ public class Main extends Application {
 			scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			primaryStage.setTitle("Finestres XP");
+			primaryStage.setTitle("Luxy Restaurant");
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

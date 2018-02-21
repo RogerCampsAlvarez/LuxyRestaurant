@@ -53,7 +53,7 @@ public class MainController {
 
     @FXML
     void cmdNext(ActionEvent event) throws Exception {
-    	System.out.println("Showing About");
+    	System.out.println("Showing Next");
 		GridPane root = (GridPane)FXMLLoader.load(getClass().getResource("Next.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
