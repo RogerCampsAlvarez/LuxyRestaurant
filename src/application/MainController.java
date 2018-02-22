@@ -1,18 +1,33 @@
 package application;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import com.sun.javafx.sg.prism.GrowableDataBuffer;
+
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
-public class MainController {
+public class MainController implements Initializable {
+
 	@FXML
     private Button btnMenjar;
     @FXML
@@ -27,7 +42,7 @@ public class MainController {
     @FXML
     void cmdMenjar(ActionEvent event) throws Exception {
     	System.out.println("Showing Menjar");
-		GridPane root = (GridPane)FXMLLoader.load(getClass().getResource("Menjar.fxml"));
+		GridPane root = FXMLLoader.load(getClass().getResource("Menjar.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 	    Stage stage = (Stage) btnMenjar.getScene().getWindow();
@@ -35,12 +50,17 @@ public class MainController {
 	    stage.setTitle("???");
 	   // stage.initStyle(StageStyle.UTILITY);
 	    stage.show();
+	    
+	    if (!Main.isSplashLoaded ) {
+		//	loadSplashScreen();
+		}
+
     }
 
     @FXML
     void cmdBeure(ActionEvent event) throws Exception {
     	System.out.println("Showing Beure");
-		GridPane root = (GridPane)FXMLLoader.load(getClass().getResource("Beure.fxml"));
+		GridPane root = FXMLLoader.load(getClass().getResource("Beure.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		//Stage aboutStage = new Stage();
@@ -54,7 +74,7 @@ public class MainController {
     @FXML
     void cmdNext(ActionEvent event) throws Exception {
     	System.out.println("Showing Next");
-		GridPane root = (GridPane)FXMLLoader.load(getClass().getResource("Next.fxml"));
+		GridPane root = FXMLLoader.load(getClass().getResource("Next.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage aboutStage = new Stage();
@@ -86,5 +106,26 @@ public class MainController {
 		aboutStage.initStyle(StageStyle.UTILITY);
 		aboutStage.show();	
     }
+
+	public void initialize(Stage primaryStage) {
+		try {
+			
+			Parent parent = FXMLLoader.load( getClass().getResource( "Main.fxml" ) );
+			primaryStage.setTitle( "LuxyRestaurant" );
+			primaryStage.setScene( new Scene( parent , 410 , 465 ) );
+			primaryStage.show();
+			
+		
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

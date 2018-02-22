@@ -9,16 +9,13 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 	static Scene scene;
+	public static boolean isSplashLoaded = false;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Main.fxml"));
-			scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Luxy Restaurant");
-			primaryStage.show();
+			SplashController scontroller = new SplashController();
+			scontroller.initialize( primaryStage );
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
