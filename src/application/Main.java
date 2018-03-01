@@ -14,6 +14,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Main.fxml"));
+			scene = new Scene(root);
+
 			SplashController scontroller = new SplashController();
 			scontroller.initialize( primaryStage );
 		} catch(Exception e) {
