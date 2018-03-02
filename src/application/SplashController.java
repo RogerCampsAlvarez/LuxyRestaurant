@@ -28,8 +28,8 @@ public class SplashController implements Initializable {
 			Parent parent = FXMLLoader.load(getClass().getResource("Splash.fxml"));
 			stage = primaryStage;
 			stage.setTitle("LuxyRestaurant");
-			stage.setScene(new Scene(parent, 400, 200));
-			primaryStage.initStyle(StageStyle.UNDECORATED);
+			stage.setScene(new Scene(parent, 800, 600));
+			//primaryStage.initStyle(StageStyle.UNDECORATED);
 			stage.show();
 
 			// Comprova si ja s'ha mostrat el SplashScreen

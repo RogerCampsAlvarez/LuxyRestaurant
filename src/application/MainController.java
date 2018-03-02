@@ -104,7 +104,7 @@ public class MainController implements Initializable {
 
 			Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
 			primaryStage.setTitle("LuxyRestaurant");
-			primaryStage.setScene(new Scene(parent, 410, 465));
+			primaryStage.setScene(new Scene(parent, Util.RESOLUCIO[0], Util.RESOLUCIO[1]));
 			//primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.show();
 
