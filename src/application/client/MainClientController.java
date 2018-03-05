@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,7 +28,7 @@ public class MainClientController implements Initializable {
 	@FXML
 	private Button btnBeure;
 	@FXML
-	private Button btnNext;
+	private Button btnBack;
 	@FXML
 	private MenuItem mnClose;
 	@FXML
@@ -36,9 +37,9 @@ public class MainClientController implements Initializable {
 	@FXML
 	void cmdMenjar(ActionEvent event) throws Exception {
 		System.out.println("Showing Menjar");
-		GridPane root = FXMLLoader.load(getClass().getResource("client/Menjar.fxml"));
+		GridPane root = FXMLLoader.load(getClass().getResource("Menjar.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
 		stage.setScene(scene);
 		stage.setTitle("???");
@@ -56,7 +57,7 @@ public class MainClientController implements Initializable {
 		System.out.println("Showing Beure");
 		GridPane root = FXMLLoader.load(getClass().getResource("Beure.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		// Stage aboutStage = new Stage();
 		Stage stage = (Stage) btnBeure.getScene().getWindow();
 		stage.setScene(scene);
@@ -66,17 +67,16 @@ public class MainClientController implements Initializable {
 	}
 
 	@FXML
-	void cmdNext(ActionEvent event) throws Exception {
-		System.out.println("Showing Next");
-		GridPane root = FXMLLoader.load(getClass().getResource("Next.fxml"));
+	void cmdBack(ActionEvent event) throws IOException {
+    	Parent root = (Parent)FXMLLoader.load(getClass().getResource("../Main.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage aboutStage = new Stage();
-		aboutStage.setScene(scene);
-		aboutStage.setTitle("???");
-		aboutStage.initStyle(StageStyle.UTILITY);
-		aboutStage.show();
-	}
+		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+	    Stage stage = (Stage) btnBack.getScene().getWindow();
+	    stage.setScene(scene);
+	    stage.setTitle("???");
+	   // stage.initStyle(StageStyle.UTILITY);
+	    stage.show();
+    }
 
 	@FXML
 	void cmdClose(ActionEvent event) {
