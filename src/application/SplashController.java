@@ -1,5 +1,6 @@
 package application;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,8 +20,7 @@ public class SplashController implements Initializable {
 	Stage stage;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 	public void initialize(Stage primaryStage) {
 		try {
