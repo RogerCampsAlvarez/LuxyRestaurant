@@ -1,11 +1,10 @@
-package application.client;
+package application;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.Main;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class MainClientController implements Initializable {
+public class MainController implements Initializable {
 
 	@FXML
 	private Button btnMenjar;
@@ -54,7 +53,7 @@ public class MainClientController implements Initializable {
 	@FXML
 	void cmdBeure(ActionEvent event) throws Exception {
 		System.out.println("Showing Beure");
-		GridPane root = FXMLLoader.load(getClass().getResource("Beure.fxml"));
+		GridPane root = FXMLLoader.load(getClass().getResource("client/Beure.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		// Stage aboutStage = new Stage();
