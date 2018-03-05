@@ -50,8 +50,8 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button fx:id="btnMenjar" mnemonicParsing="false" onAction="#cmdMenjar" prefHeight="63.0" prefWidth="606.0" text="Demanar Menjar" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Button fx:id="btnBeure" mnemonicParsing="false" onAction="#cmdBeure" prefHeight="62.0" prefWidth="609.0" text="Demanar Begudes" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <Button fx:id="btnMenjar" mnemonicParsing="false" onAction="#cmdMenjar" prefHeight="63.0" prefWidth="606.0" text="Demanar Comanda" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Button fx:id="btnBeure" mnemonicParsing="false" onAction="#cmdBeure" prefHeight="62.0" prefWidth="609.0" text="Bloqued" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <Button fx:id="btnNext" mnemonicParsing="false" onAction="#cmdNext" prefHeight="62.0" prefWidth="609.0" text="Segúent" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
          <BorderPane.margin>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -7,10 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenjarController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenjarController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="235.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="233.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="184.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="567.0" minWidth="10.0" prefWidth="454.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0" minWidth="10.0" prefWidth="422.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -24,12 +26,50 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="467.0" text="Menjar" textAlignment="CENTER" GridPane.columnSpan="2147483647">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="73.0" prefWidth="1073.0" text="MENJAR" textAlignment="CENTER" GridPane.columnSpan="2">
          <font>
-            <Font size="50.0" />
+            <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefHeight="57.0" prefWidth="70.0" text="Back" GridPane.rowIndex="8" />
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefHeight="60.0" prefWidth="120.0" text="BACK" GridPane.rowIndex="8">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="btnPrimerPlat" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="PRIMER PLAT" GridPane.rowIndex="2">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSegonPlat" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="SEGON PLAT" GridPane.rowIndex="3">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPostres" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="POSTRES" GridPane.rowIndex="4">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCafes" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="CAFÈS" GridPane.rowIndex="5">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnBegudes" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="BEGUDES" GridPane.rowIndex="6">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <ListView fx:id="lvPlats" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="7" />
+      <Text fx:id="txtPlat" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAT" textAlignment="CENTER" wrappingWidth="421.5947265625" GridPane.columnIndex="2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="imgPlat" fitHeight="239.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Pane fx:id="paneOpinions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3" />
+      <Text fx:id="txtDescripcio" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripció" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <Button fx:id="btnDemanar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="DEMANAR" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
