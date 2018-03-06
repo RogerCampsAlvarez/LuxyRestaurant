@@ -1,5 +1,5 @@
 package application;
 
 public class Util {
-	static final int[] RESOLUCIO = {1080,720}; 
+	static final int[] RESOLUCIO = { 1080, 720 };
 }

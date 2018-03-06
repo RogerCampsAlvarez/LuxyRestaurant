@@ -1,4 +1,4 @@
-package application.client;
+package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,13 +9,13 @@ import javafx.stage.Stage;
 public class AboutController {
 	@FXML
 	Button btnCloseAbout;
-	
+
 	@FXML
 	Label noms;
-	
+
 	@FXML
-    void cmdCloseAbout(ActionEvent event) {
-	    Stage stage = (Stage) btnCloseAbout.getScene().getWindow();
-	    stage.close();
-    }
+	void cmdCloseAbout(ActionEvent event) {
+		Stage stage = (Stage) btnCloseAbout.getScene().getWindow();
+		stage.close();
+	}
 }

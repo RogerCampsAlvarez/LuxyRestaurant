@@ -1,11 +1,11 @@
 package application.client;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import application.MainController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class MainClientController implements Initializable {
+public class MainClientController {
 
 	@FXML
 	private Button btnMenjar;
@@ -36,47 +36,38 @@ public class MainClientController implements Initializable {
 
 	@FXML
 	void cmdMenjar(ActionEvent event) throws Exception {
-		System.out.println("Showing Menjar");
+		// System.out.println("Showing Menjar");
 		GridPane root = FXMLLoader.load(getClass().getResource("Menjar.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
-		stage.setScene(scene);
-		stage.setTitle("???");
-		// stage.initStyle(StageStyle.UTILITY);
-		stage.show();
-
-		if (!Main.isSplashLoaded) {
-			// loadSplashScreen();
-		}
-
+		MenjarController mcontroller = new MenjarController();
+		mcontroller.initialize(stage);
 	}
 
 	@FXML
 	void cmdBeure(ActionEvent event) throws Exception {
-		System.out.println("Showing Beure");
+		// System.out.println("Showing Beure");
 		GridPane root = FXMLLoader.load(getClass().getResource("Beure.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		// Stage aboutStage = new Stage();
 		Stage stage = (Stage) btnBeure.getScene().getWindow();
-		stage.setScene(scene);
-		stage.setTitle("???");
-		// stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+		
+		BeureController mcontroller = new BeureController();
+		mcontroller.initialize(stage);
 	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
-    	Parent root = (Parent)FXMLLoader.load(getClass().getResource("../Main.fxml"));
+		Parent root = (Parent) FXMLLoader.load(getClass().getResource("../Main.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
-	    Stage stage = (Stage) btnBack.getScene().getWindow();
-	    stage.setScene(scene);
-	    stage.setTitle("???");
-	   // stage.initStyle(StageStyle.UTILITY);
-	    stage.show();
-    }
+		Stage stage = (Stage) btnBack.getScene().getWindow();
+
+		MainController mcontroller = new MainController();
+		mcontroller.initialize(stage);
+	}
 
 	@FXML
 	void cmdClose(ActionEvent event) {
@@ -104,10 +95,10 @@ public class MainClientController implements Initializable {
 	public void initialize(Stage primaryStage) {
 		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-			primaryStage.setTitle("LuxyRestaurant");
+			Parent parent = FXMLLoader.load(getClass().getResource("MainClient.fxml"));
+			primaryStage.setTitle("LuxyRestaurant-Client");
 			primaryStage.setScene(new Scene(parent));
-			//primaryStage.initStyle(StageStyle.UTILITY);
+			// primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.show();
 
 		} catch (IOException e) {
@@ -115,11 +106,4 @@ public class MainClientController implements Initializable {
 		}
 
 	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-
-	}
-
 }

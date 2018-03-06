@@ -1,6 +1,5 @@
 package application;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,12 +14,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-public class SplashController implements Initializable {
+public class SplashController {
 
 	Stage stage;
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {}
 
 	public void initialize(Stage primaryStage) {
 		try {
@@ -29,7 +25,7 @@ public class SplashController implements Initializable {
 			stage = primaryStage;
 			stage.setTitle("LuxyRestaurant");
 			stage.setScene(new Scene(parent, 400, 300));
-			//primaryStage.initStyle(StageStyle.UNDECORATED);
+			// primaryStage.initStyle(StageStyle.UNDECORATED);
 			stage.show();
 
 			// Comprova si ja s'ha mostrat el SplashScreen
@@ -74,7 +70,7 @@ public class SplashController implements Initializable {
 			fadeOut.setOnFinished(e -> {
 				try {
 					MainController mcontroller = new MainController();
-					//stage.initStyle(StageStyle.DECORATED);
+					// stage.initStyle(StageStyle.DECORATED);
 					mcontroller.initialize(stage);
 				} catch (Exception ex) {
 				}

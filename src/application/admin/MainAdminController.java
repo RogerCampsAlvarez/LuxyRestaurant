@@ -1,10 +1,11 @@
-package application;
+package application.admin;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.admin.MainAdminController;
+import application.Main;
+import application.MainController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,39 +21,55 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class MainController {
+public class MainAdminController {
 
 	@FXML
-	private Button btnClient;
+	private Button btnStock;
 	@FXML
-	private Button btnAdmin;
+	private Button btnTaules;
+	@FXML
+	private Button btnBack;
 	@FXML
 	private MenuItem mnClose;
 	@FXML
 	private MenuItem closeButton;
 
 	@FXML
-	void cmdClient(ActionEvent event) throws Exception {
-		// System.out.println("Showing Client");
-		Pane root = FXMLLoader.load(getClass().getResource("client/MainClient.fxml"));
+	void cmdStock(ActionEvent event) throws Exception {
+		// System.out.println("Showing Menjar");
+		GridPane root = FXMLLoader.load(getClass().getResource("Stock.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage stage = (Stage) btnClient.getScene().getWindow();
+		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+		Stage stage = (Stage) btnStock.getScene().getWindow();
 		stage.setScene(scene);
-		stage.setTitle("LuxyRestaurant-Client");
+		stage.setTitle("???");
 		// stage.initStyle(StageStyle.UTILITY);
 		stage.show();
 	}
 
 	@FXML
-	void cmdAdmin(ActionEvent event) throws Exception {
-		System.out.println("Showing Beure");
-		Pane root = FXMLLoader.load(getClass().getResource("admin/MainAdmin.fxml"));
+	void cmdTaules(ActionEvent event) throws Exception {
+		// System.out.println("Showing Beure");
+		GridPane root = FXMLLoader.load(getClass().getResource("Taules.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
-		Stage stage = (Stage) btnAdmin.getScene().getWindow();
-		MainAdminController mcontroller = new MainAdminController();
+		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+		// Stage aboutStage = new Stage();
+		Stage stage = (Stage) btnTaules.getScene().getWindow();
+		stage.setScene(scene);
+		stage.setTitle("???");
+		// stage.initStyle(StageStyle.UTILITY);
+		stage.show();
+	}
+
+	@FXML
+	void cmdBack(ActionEvent event) throws IOException {
+		Parent root = (Parent) FXMLLoader.load(getClass().getResource("../Main.fxml"));
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+		Stage stage = (Stage) btnBack.getScene().getWindow();
+
+		MainController mcontroller = new MainController();
+		// stage.initStyle(StageStyle.DECORATED);
 		mcontroller.initialize(stage);
 	}
 
@@ -82,8 +99,8 @@ public class MainController {
 	public void initialize(Stage primaryStage) {
 		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
-			primaryStage.setTitle("LuxyRestaurant");
+			Parent parent = FXMLLoader.load(getClass().getResource("MainAdmin.fxml"));
+			primaryStage.setTitle("LuxyRestaurant-Admin");
 			primaryStage.setScene(new Scene(parent));
 			// primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.show();

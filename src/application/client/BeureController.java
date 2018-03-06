@@ -21,8 +21,22 @@ public class BeureController {
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 	    Stage stage = (Stage) btnBack.getScene().getWindow();
-	    stage.setScene(scene);
-	    stage.setTitle("???");
-	    stage.show();
+	    
+		MainClientController mcontroller = new MainClientController();
+		mcontroller.initialize(stage);
     }
+    
+    public void initialize(Stage primaryStage) {
+		try {
+
+			Parent parent = FXMLLoader.load(getClass().getResource("Beure.fxml"));
+			primaryStage.setTitle("LuxyRestaurant-Client-Beure");
+			primaryStage.setScene(new Scene(parent));
+			// primaryStage.initStyle(StageStyle.UTILITY);
+			primaryStage.show();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
