@@ -28,8 +28,8 @@ public class TaulesController {
 			primaryStage.setTitle("LuxyRestaurant-Admin-Taules");
 			primaryStage.setScene(new Scene(parent));
 			// primaryStage.initStyle(StageStyle.UTILITY);
+			
 			primaryStage.show();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

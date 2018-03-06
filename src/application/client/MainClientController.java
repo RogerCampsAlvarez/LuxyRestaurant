@@ -2,7 +2,7 @@ package application.client;
 
 import java.io.IOException;
 
-import application.Main;
+import application.AboutController;
 import application.MainController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,10 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MainClientController {
 
@@ -56,18 +53,7 @@ public class MainClientController {
 
 	@FXML
 	void cmdAbout(ActionEvent event) throws Exception {
-		System.out.println("Showing About");
-		GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("About.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		Stage aboutStage = new Stage();
-		aboutStage.setScene(scene);
-		aboutStage.setTitle("About");
-		aboutStage.initModality(Modality.WINDOW_MODAL);
-		aboutStage.initOwner(Main.getMainScene().getWindow());
-		aboutStage.setResizable(false);
-		aboutStage.initStyle(StageStyle.UTILITY);
-		aboutStage.show();
+		new AboutController().initialize(new Stage());
 	}
 
 	public void initialize(Stage primaryStage) {
