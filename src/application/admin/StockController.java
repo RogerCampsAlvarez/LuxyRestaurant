@@ -1,4 +1,4 @@
-package application.client;
+package application.admin;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class BeureController {
+public class StockController {
 	
 	@FXML
     private Button btnBack;
@@ -18,14 +18,14 @@ public class BeureController {
     @FXML
     void btnBack(ActionEvent event) throws IOException {
 	    Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainClientController().initialize(stage);
+		new MainAdminController().initialize(stage);
     }
     
     public void initialize(Stage primaryStage) {
 		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("Beure.fxml"));
-			primaryStage.setTitle("LuxyRestaurant-Client-Beure");
+			Parent parent = FXMLLoader.load(getClass().getResource("Stock.fxml"));
+			primaryStage.setTitle("LuxyRestaurant-Admin-Stock");
 			primaryStage.setScene(new Scene(parent));
 			// primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.show();

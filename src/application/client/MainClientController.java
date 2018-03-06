@@ -1,8 +1,6 @@
 package application.client;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import application.Main;
 import application.MainController;
@@ -10,13 +8,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,38 +32,20 @@ public class MainClientController {
 
 	@FXML
 	void cmdMenjar(ActionEvent event) throws Exception {
-		// System.out.println("Showing Menjar");
-		GridPane root = FXMLLoader.load(getClass().getResource("Menjar.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
-		MenjarController mcontroller = new MenjarController();
-		mcontroller.initialize(stage);
+		new MenjarController().initialize(stage);
 	}
 
 	@FXML
 	void cmdBeure(ActionEvent event) throws Exception {
-		// System.out.println("Showing Beure");
-		GridPane root = FXMLLoader.load(getClass().getResource("Beure.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
-		// Stage aboutStage = new Stage();
 		Stage stage = (Stage) btnBeure.getScene().getWindow();
-		
-		BeureController mcontroller = new BeureController();
-		mcontroller.initialize(stage);
+		new BeureController().initialize(stage);
 	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
-		Parent root = (Parent) FXMLLoader.load(getClass().getResource("../Main.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-
-		MainController mcontroller = new MainController();
-		mcontroller.initialize(stage);
-	}
+		new MainController().initialize(stage);	}
 
 	@FXML
 	void cmdClose(ActionEvent event) {

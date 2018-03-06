@@ -1,8 +1,6 @@
 package application.admin;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import application.Main;
 import application.MainController;
@@ -10,13 +8,11 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -36,41 +32,21 @@ public class MainAdminController {
 
 	@FXML
 	void cmdStock(ActionEvent event) throws Exception {
-		// System.out.println("Showing Menjar");
-		GridPane root = FXMLLoader.load(getClass().getResource("Stock.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
+		
 		Stage stage = (Stage) btnStock.getScene().getWindow();
-		stage.setScene(scene);
-		stage.setTitle("???");
-		// stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+		new StockController().initialize(stage);
 	}
 
 	@FXML
 	void cmdTaules(ActionEvent event) throws Exception {
-		// System.out.println("Showing Beure");
-		GridPane root = FXMLLoader.load(getClass().getResource("Taules.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
-		// Stage aboutStage = new Stage();
 		Stage stage = (Stage) btnTaules.getScene().getWindow();
-		stage.setScene(scene);
-		stage.setTitle("???");
-		// stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+		new TaulesController().initialize(stage);
 	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
-		Parent root = (Parent) FXMLLoader.load(getClass().getResource("../Main.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("../application.css").toExternalForm());
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-
-		MainController mcontroller = new MainController();
-		// stage.initStyle(StageStyle.DECORATED);
-		mcontroller.initialize(stage);
+		new MainController().initialize(stage);
 	}
 
 	@FXML

@@ -1,21 +1,18 @@
 package application;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import application.admin.MainAdminController;
+import application.client.MainClientController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,27 +30,14 @@ public class MainController {
 
 	@FXML
 	void cmdClient(ActionEvent event) throws Exception {
-		// System.out.println("Showing Client");
-		Pane root = FXMLLoader.load(getClass().getResource("client/MainClient.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		Stage stage = (Stage) btnClient.getScene().getWindow();
-		stage.setScene(scene);
-		stage.setTitle("LuxyRestaurant-Client");
-		// stage.initStyle(StageStyle.UTILITY);
-		stage.show();
+		new MainClientController().initialize(stage);
 	}
 
 	@FXML
 	void cmdAdmin(ActionEvent event) throws Exception {
-		System.out.println("Showing Beure");
-		Pane root = FXMLLoader.load(getClass().getResource("admin/MainAdmin.fxml"));
-		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
 		Stage stage = (Stage) btnAdmin.getScene().getWindow();
-		MainAdminController mcontroller = new MainAdminController();
-		mcontroller.initialize(stage);
+		new MainAdminController().initialize(stage);
 	}
 
 	@FXML
@@ -81,7 +65,6 @@ public class MainController {
 
 	public void initialize(Stage primaryStage) {
 		try {
-
 			Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
 			primaryStage.setTitle("LuxyRestaurant");
 			primaryStage.setScene(new Scene(parent));
