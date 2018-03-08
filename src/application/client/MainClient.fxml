@@ -39,9 +39,9 @@
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -50,13 +50,16 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button fx:id="btnMenjar" mnemonicParsing="false" onAction="#cmdMenjar" prefHeight="63.0" prefWidth="606.0" text="Demanar Comanda" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Button fx:id="btnBeure" mnemonicParsing="false" onAction="#cmdBeure" prefHeight="62.0" prefWidth="609.0" text="Bloqued" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#cmdBack" prefHeight="62.0" prefWidth="609.0" text="Back" GridPane.rowIndex="5" />
+            <Button fx:id="btnMenjar" mnemonicParsing="false" onAction="#cmdMenjar" prefHeight="65.0" prefWidth="606.0" text="Demanar Comanda" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Button fx:id="btnBeure" mnemonicParsing="false" onAction="#cmdBeure" prefHeight="65.0" prefWidth="609.0" text="Demanar Begudes" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <Button fx:id="btnOpinio" mnemonicParsing="false" onAction="#cmdOpinar" prefHeight="65.0" prefWidth="609.0" text="Opinar" GridPane.columnSpan="2" GridPane.rowIndex="4" />
          </children>
          <BorderPane.margin>
             <Insets top="10.0" />
          </BorderPane.margin>
       </GridPane>
    </center>
+   <bottom>
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#cmdBack" prefHeight="45.0" prefWidth="609.0" text="BACK" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

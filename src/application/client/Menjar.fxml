@@ -11,8 +11,8 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.client.MenjarController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="184.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="567.0" minWidth="10.0" prefWidth="454.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="422.0" minWidth="10.0" prefWidth="422.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="567.0" minWidth="10.0" prefWidth="347.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="529.0" minWidth="10.0" prefWidth="529.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,12 +61,12 @@
          </font>
       </Button>
       <ListView fx:id="lvPlats" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="7" />
-      <Text fx:id="txtPlat" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAT" textAlignment="CENTER" wrappingWidth="421.5947265625" GridPane.columnIndex="2">
+      <Text fx:id="txtPlat" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAT" textAlignment="CENTER" wrappingWidth="528.5947265625" GridPane.columnIndex="2">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fx:id="imgPlat" fitHeight="239.0" fitWidth="423.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <ImageView fx:id="imgPlat" fitHeight="239.0" fitWidth="529.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Pane fx:id="paneOpinions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3" />
       <Text fx:id="txtDescripcio" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripció" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Button fx:id="btnDemanar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="DEMANAR" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />

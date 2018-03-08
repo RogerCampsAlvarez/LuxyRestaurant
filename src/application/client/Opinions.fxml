@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.client.OpinionsController">
+  <items>
+      <VBox prefHeight="400.0" prefWidth="150.0">
+         <children>
+            <ListView fx:id="lvPlats" prefHeight="350.0" prefWidth="150.0" />
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#cmdBack" prefHeight="50.0" prefWidth="175.0" text="BACK" />
+         </children>
+      </VBox>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0">
+               <children>
+                  <ListView fx:id="lvComentaris" layoutY="46.0" prefHeight="152.0" prefWidth="417.0" />
+                  <Label fx:id="lblPlat" alignment="CENTER" layoutX="-1.0" layoutY="-5.0" prefHeight="49.0" prefWidth="417.0" text="Plat" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0">
+               <children>
+                  <VBox layoutY="-2.0" prefHeight="200.0" prefWidth="417.0">
+                     <children>
+                        <TextArea fx:id="tAreaComentari" prefHeight="154.0" prefWidth="417.0" />
+                        <Button fx:id="btnEnviar" mnemonicParsing="false" prefHeight="55.0" prefWidth="417.0" text="ENVIAR" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+  </items>
+</SplitPane>

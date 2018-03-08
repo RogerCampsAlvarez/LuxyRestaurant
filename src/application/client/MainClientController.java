@@ -23,6 +23,8 @@ public class MainClientController {
 	@FXML
 	private Button btnBack;
 	@FXML
+	private Button btnOpinio;
+	@FXML
 	private MenuItem mnClose;
 	@FXML
 	private MenuItem closeButton;
@@ -37,6 +39,12 @@ public class MainClientController {
 	void cmdBeure(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnBeure.getScene().getWindow();
 		new BeureController().initialize(stage);
+	}
+	
+	@FXML
+	void cmdOpinar(ActionEvent event) throws Exception {
+		Stage stage = (Stage) btnOpinio.getScene().getWindow();
+		new OpinionsController().initialize(stage);
 	}
 
 	@FXML
