@@ -32,26 +32,25 @@ public class MainClientController {
 	@FXML
 	void cmdMenjar(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
-		new MenjarController(stage);
+		new MenjarController().initialize(stage);
 	}
 
 	@FXML
 	void cmdBeure(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnBeure.getScene().getWindow();
-		new BeureController(stage);
+		new BeureController().initialize(stage);
 	}
 	
 	@FXML
 	void cmdOpinar(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnOpinio.getScene().getWindow();
-		new OpinionsController(stage);
+		new OpinionsController().initialize(stage);
 	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainController(stage);	
-	}
+		new MainController().initialize(stage);	}
 
 	@FXML
 	void cmdClose(ActionEvent event) {
@@ -62,15 +61,18 @@ public class MainClientController {
 
 	@FXML
 	void cmdAbout(ActionEvent event) throws Exception {
-		new AboutController(new Stage());
+		new AboutController().initialize(new Stage());
 	}
 
-	public MainClientController(Stage primaryStage) {
+	public void initialize(Stage primaryStage) {
 		try {
+
 			Parent parent = FXMLLoader.load(getClass().getResource("MainClient.fxml"));
 			primaryStage.setTitle("LuxyRestaurant-Client");
 			primaryStage.setScene(new Scene(parent));
+			// primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.show();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

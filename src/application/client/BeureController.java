@@ -18,10 +18,10 @@ public class BeureController {
     @FXML
     void btnBack(ActionEvent event) throws IOException {
 	    Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainClientController(stage);
+		new MainClientController().initialize(stage);
     }
     
-    public BeureController(Stage primaryStage) {
+    public void initialize(Stage primaryStage) {
 		try {
 
 			Parent parent = FXMLLoader.load(getClass().getResource("Beure.fxml"));

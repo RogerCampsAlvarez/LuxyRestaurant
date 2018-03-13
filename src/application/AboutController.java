@@ -26,7 +26,7 @@ public class AboutController {
 		stage.close();
 	}
 	
-	public AboutController(Stage aboutStage) {
+	public void initialize(Stage aboutStage) {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("About.fxml"));
 			aboutStage.setScene(new Scene(parent));

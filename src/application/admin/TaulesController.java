@@ -21,7 +21,7 @@ public class TaulesController {
 		new MainAdminController().initialize(stage);
     }
     
-    public TaulesController(Stage primaryStage) {
+    public void initialize(Stage primaryStage) {
 		try {
 
 			Parent parent = FXMLLoader.load(getClass().getResource("Taules.fxml"));

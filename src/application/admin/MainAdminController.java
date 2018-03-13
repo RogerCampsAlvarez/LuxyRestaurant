@@ -29,20 +29,21 @@ public class MainAdminController {
 
 	@FXML
 	void cmdStock(ActionEvent event) throws Exception {
+		
 		Stage stage = (Stage) btnStock.getScene().getWindow();
-		new StockController(stage);
+		new StockController().initialize(stage);
 	}
 
 	@FXML
 	void cmdTaules(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnTaules.getScene().getWindow();
-		new TaulesController(stage);
+		new TaulesController().initialize(stage);
 	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainController(stage);
+		new MainController().initialize(stage);
 	}
 
 	@FXML
@@ -54,7 +55,7 @@ public class MainAdminController {
 
 	@FXML
 	void cmdAbout(ActionEvent event) throws Exception {
-		new AboutController(new Stage());
+		new AboutController().initialize(new Stage());
 	}
 
 	public void initialize(Stage primaryStage) {

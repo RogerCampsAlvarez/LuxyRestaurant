@@ -19,10 +19,10 @@ public class OpinionsController {
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainClientController(stage);	
+		new MainClientController().initialize(stage);	
 	}
 	
-	public OpinionsController(Stage primaryStage) {
+	public void initialize(Stage primaryStage) {
 		try {
 
 			Parent parent = FXMLLoader.load(getClass().getResource("Opinions.fxml"));
