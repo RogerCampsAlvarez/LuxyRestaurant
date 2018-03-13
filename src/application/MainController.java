@@ -55,7 +55,6 @@ public class MainController {
 			Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
 			primaryStage.setTitle("LuxyRestaurant");
 			primaryStage.setScene(new Scene(parent));
-			// primaryStage.initStyle(StageStyle.UTILITY);
 			primaryStage.show();
 
 		} catch (IOException e) {
