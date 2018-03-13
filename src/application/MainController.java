@@ -28,7 +28,7 @@ public class MainController {
 	@FXML
 	void cmdClient(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnClient.getScene().getWindow();
-		new MainClientController().initialize(stage);
+		new MainClientController(stage);
 	}
 
 	@FXML
@@ -47,10 +47,10 @@ public class MainController {
 	@FXML
 	void cmdAbout(ActionEvent event) throws Exception {
 		System.out.println("Showing About");
-		new AboutController().initialize(new Stage());
+		new AboutController(new Stage());
 	}
 
-	public void initialize(Stage primaryStage) {
+	public MainController(Stage primaryStage) {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
 			primaryStage.setTitle("LuxyRestaurant");

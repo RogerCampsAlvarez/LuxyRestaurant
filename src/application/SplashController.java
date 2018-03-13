@@ -13,15 +13,13 @@ import javafx.util.Duration;
 public class SplashController {
 
 	Stage stage;
-
-	public void initialize(Stage primaryStage) {
+	public SplashController(Stage primaryStage) {
 		try {
 
 			Parent parent = FXMLLoader.load(getClass().getResource("Splash.fxml"));
 			stage = primaryStage;
 			stage.setTitle("LuxyRestaurant");
 			stage.setScene(new Scene(parent, 400, 300));
-			// primaryStage.initStyle(StageStyle.UNDECORATED);
 			stage.show();
 
 			// Comprova si ja s'ha mostrat el SplashScreen
@@ -32,7 +30,6 @@ public class SplashController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	/**
@@ -64,12 +61,7 @@ public class SplashController {
 			});
 
 			fadeOut.setOnFinished(e -> {
-				try {
-					MainController mcontroller = new MainController();
-					// stage.initStyle(StageStyle.DECORATED);
-					mcontroller.initialize(stage);
-				} catch (Exception ex) {
-				}
+				new MainController(stage);	
 			});
 
 		} catch (IOException e) {

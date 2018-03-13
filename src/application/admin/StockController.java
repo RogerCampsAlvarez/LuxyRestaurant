@@ -21,7 +21,7 @@ public class StockController {
 		new MainAdminController().initialize(stage);
     }
     
-    public void initialize(Stage primaryStage) {
+    public StockController(Stage primaryStage) {
 		try {
 
 			Parent parent = FXMLLoader.load(getClass().getResource("Stock.fxml"));

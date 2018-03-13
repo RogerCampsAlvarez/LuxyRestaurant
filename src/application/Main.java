@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	static Scene scene;
-	public static boolean isSplashLoaded = false;
+	static boolean isSplashLoaded = false;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -16,8 +16,7 @@ public class Main extends Application {
 			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Main.fxml"));
 			scene = new Scene(root);
 
-			SplashController scontroller = new SplashController();
-			scontroller.initialize(primaryStage);
+			new SplashController(primaryStage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
