@@ -2,8 +2,6 @@ package application;
 
 import java.io.IOException;
 
-import application.admin.MainAdminController;
-import application.client.MainClientController;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainController {
@@ -27,14 +26,20 @@ public class MainController {
 
 	@FXML
 	void cmdClient(ActionEvent event) throws Exception {
+		Pane root = FXMLLoader.load(getClass().getResource("/application/client/MainClient.fxml"));
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnClient.getScene().getWindow();
-		new MainClientController().initialize(stage);
+		Util.openGUI(scene, stage, Strings.MAIN_TITLE);
 	}
 
 	@FXML
 	void cmdAdmin(ActionEvent event) throws Exception {
+		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnAdmin.getScene().getWindow();
-		new MainAdminController().initialize(stage);
+		Util.openGUI(scene, stage, Strings.MAIN_TITLE);
+
+		//new MainAdminController().initialize(stage);
 	}
 
 	@FXML

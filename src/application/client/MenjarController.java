@@ -2,12 +2,14 @@ package application.client;
 
 import java.io.IOException;
 
+import application.Strings;
+import application.Util;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MenjarController {
@@ -19,9 +21,11 @@ public class MenjarController {
 	void btnBack(ActionEvent event) throws IOException {
 		
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainClientController().initialize(stage);
+		Pane root = FXMLLoader.load(getClass().getResource("/application/client/MainClient.fxml"));
+		Scene scene = new Scene(root);
+		Util.openGUI(scene, stage, Strings.MAIN_ADMIN_TITLE);
 	}
-	
+	/*
 	public void initialize(Stage primaryStage) {
 		try {
 
@@ -34,6 +38,6 @@ public class MenjarController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 }

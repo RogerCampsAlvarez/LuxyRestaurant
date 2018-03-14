@@ -6,6 +6,7 @@ import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -66,9 +67,9 @@ public class SplashController {
 			fadeOut.setOnFinished(e -> {
 				try {
 					MainController mcontroller = new MainController();
-					// stage.initStyle(StageStyle.DECORATED);
 					mcontroller.initialize(stage);
 				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
 			});
 

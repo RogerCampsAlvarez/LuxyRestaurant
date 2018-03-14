@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import application.AboutController;
 import application.MainController;
+import application.Strings;
+import application.Util;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainAdminController {
@@ -26,24 +30,30 @@ public class MainAdminController {
 	private MenuItem mnClose;
 	@FXML
 	private MenuItem closeButton;
+	
 
 	@FXML
 	void cmdStock(ActionEvent event) throws Exception {
-		
+		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Stock.fxml"));
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnStock.getScene().getWindow();
-		new StockController().initialize(stage);
+		Util.openGUI(scene, stage, Strings.STOCK_TITLE);
 	}
 
 	@FXML
 	void cmdTaules(ActionEvent event) throws Exception {
+		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Taules.fxml"));
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnTaules.getScene().getWindow();
-		new TaulesController().initialize(stage);
+		Util.openGUI(scene, stage, Strings.STOCK_TITLE);
 	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
+		Pane root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
+		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		new MainController().initialize(stage);
+		Util.openGUI(scene, stage, Strings.STOCK_TITLE);
 	}
 
 	@FXML
@@ -57,7 +67,7 @@ public class MainAdminController {
 	void cmdAbout(ActionEvent event) throws Exception {
 		new AboutController().initialize(new Stage());
 	}
-
+/*
 	public void initialize(Stage primaryStage) {
 		try {
 
@@ -71,5 +81,5 @@ public class MainAdminController {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 }

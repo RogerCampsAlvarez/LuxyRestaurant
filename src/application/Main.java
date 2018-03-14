@@ -3,7 +3,7 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -13,11 +13,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("Main.fxml"));
+			Pane root = (Pane) FXMLLoader.load(getClass().getResource("Splash.fxml"));
 			scene = new Scene(root);
 
-			SplashController scontroller = new SplashController();
-			scontroller.initialize(primaryStage);
+			new SplashController().initialize(primaryStage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
