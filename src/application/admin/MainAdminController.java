@@ -31,13 +31,12 @@ public class MainAdminController {
 	@FXML
 	private MenuItem closeButton;
 	
-
 	@FXML
 	void cmdStock(ActionEvent event) throws Exception {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Stock.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnStock.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.STOCK_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_STOCK);
 	}
 
 	@FXML
@@ -45,7 +44,7 @@ public class MainAdminController {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Taules.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnTaules.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.STOCK_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_TAULES);
 	}
 
 	@FXML
@@ -53,7 +52,7 @@ public class MainAdminController {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.STOCK_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN);
 	}
 
 	@FXML

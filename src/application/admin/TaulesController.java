@@ -23,7 +23,7 @@ public class TaulesController {
     	Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
 		Scene scene = new Scene(root);
 	    Stage stage = (Stage) btnBack.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.MAIN_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN);
     }
     
     public void initialize(Stage primaryStage) {

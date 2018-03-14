@@ -9,6 +9,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
@@ -34,9 +35,9 @@ public class MainClientController {
 	@FXML
 	void cmdMenjar(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
-		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Menjar.fxml"));
+		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Menu.fxml"));
 		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.MAIN_ADMIN_TITLE);	
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);	
 	}
 
 	@FXML
@@ -44,15 +45,15 @@ public class MainClientController {
 		Stage stage = (Stage) btnBeure.getScene().getWindow();
 		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Beure.fxml"));
 		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.MAIN_ADMIN_TITLE);	
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);	
 	}
 	
 	@FXML
 	void cmdOpinar(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnOpinio.getScene().getWindow();
-		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Opinions.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/application/client/Opinions.fxml"));
 		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.MAIN_ADMIN_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_CLIENT_OPINAR);
 	}
 
 	@FXML
@@ -60,7 +61,7 @@ public class MainClientController {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
 		Pane root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
 		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.MAIN_ADMIN_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN);
 	}
 
 	@FXML

@@ -20,9 +20,9 @@ public class OpinionsController {
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		Pane root = FXMLLoader.load(getClass().getResource("/application/client/MainClientController.fxml"));
+		Pane root = FXMLLoader.load(getClass().getResource("/application/client/MainClient.fxml"));
 		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.MAIN_ADMIN_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
 	}
 	/*
 	public void initialize(Stage primaryStage) {

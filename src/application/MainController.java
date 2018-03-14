@@ -29,7 +29,7 @@ public class MainController {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/client/MainClient.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnClient.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.MAIN_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN_CLIENT);
 	}
 
 	@FXML
@@ -37,7 +37,7 @@ public class MainController {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnAdmin.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.MAIN_TITLE);
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
 
 		//new MainAdminController().initialize(stage);
 	}
