@@ -31,7 +31,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefHeight="60.0" prefWidth="120.0" text="BACK" GridPane.rowIndex="8">
+      <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefHeight="60.0" prefWidth="184.0" text="BACK" GridPane.rowIndex="8">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -66,10 +66,15 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <ImageView fx:id="imgPlat" fitHeight="239.0" fitWidth="529.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <ImageView fx:id="imgPlat" fitHeight="235.0" fitWidth="529.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
       <Pane fx:id="paneOpinions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3" />
       <Text fx:id="txtDescripcio" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripció" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Button fx:id="btnDemanar" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="DEMANAR" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+      <Button fx:id="btnDemanr" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" text="ENVIAR" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

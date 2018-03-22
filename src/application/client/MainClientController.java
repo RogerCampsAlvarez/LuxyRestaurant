@@ -37,7 +37,7 @@ public class MainClientController {
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
 		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Menu.fxml"));
 		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);	
+		Util.openGUI(scene, stage, Strings.TITLE_CLIENT_MENU);	
 	}
 
 	@FXML
@@ -75,19 +75,6 @@ public class MainClientController {
 	void cmdAbout(ActionEvent event) throws Exception {
 		new AboutController().initialize(new Stage());
 	}
-/*
-	public void initialize(Stage primaryStage) {
-		try {
 
-			Parent parent = FXMLLoader.load(getClass().getResource("MainClient.fxml"));
-			primaryStage.setTitle("LuxyRestaurant-Client");
-			primaryStage.setScene(new Scene(parent));
-			// primaryStage.initStyle(StageStyle.UTILITY);
-			primaryStage.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}*/
+	
 }
