@@ -1,6 +1,7 @@
 package application.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import application.Strings;
 import application.Util;
@@ -21,13 +22,13 @@ public class StockController {
     private Button btnBack;
 
 	@FXML
-	private ListView<StockItem> list;
+	private ListView<StockCategory> categoryListView;
 	
 	@FXML
-	private ListView<String> list2;
+	private ListView<StockItem> stockListView;
 	
+	ObservableList<StockCategory> categoryList = FXCollections.observableArrayList();
 	ObservableList<StockItem> stockList = FXCollections.observableArrayList();
-	ObservableList<String> stockInfo = FXCollections.observableArrayList();
 	
     @FXML
     void btnBack(ActionEvent event) throws IOException {
@@ -38,16 +39,36 @@ public class StockController {
     }
     
     void loadList() {
-    	StockItem item1 = new StockItem(0, "Carn", 4);
+    	StockCategory catCarnics = new StockCategory("Productes Càrnics");
+    	catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
+    	catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
+    	catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
+    	catCarnics.productesList.add(new StockItem(4, "Bistec", 6));
+    	categoryList.add(catCarnics);
     	
-    	stockList.add(item1);
-    	list.setItems(stockList);
-		
-		stockInfo.add("ASD");
-		list2.setItems(stockInfo);
+    	StockCategory catMarisc = new StockCategory("Marisc");
+    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
+    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
+    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
+    	categoryList.add(catMarisc);
+    	
+    	categoryListView.setItems(categoryList);
+		stockListView.setItems(stockList);
     }
     
 	public void initialize() {
 		loadList();
+		
+		categoryListView.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+			System.out.println(nv);
+			List<StockItem> productes = ((StockCategory)nv).productesList;
+			stockList.clear();
+			for(StockItem item : productes) {
+				System.out.println(item);
+				stockList.add(item);
+			}
+           // System.out.println(categoryListView.getSelectionModel().getSelectedItems().get(0));
+        });
+			
 	}
 }
