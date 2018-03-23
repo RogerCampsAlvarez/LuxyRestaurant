@@ -67,27 +67,57 @@ public class MenuController {
 	
 	@FXML
 	void btnPrimerPlat(ActionEvent event) throws IOException {
+		obsListComanda.clear();
 		
+		for ( int i = 0; i < 10; i++ ) {
+			obsListComanda.add( String.valueOf( i ) );
+		}
+		
+		lsPlats.setItems( obsListComanda );
 	}
 	
 	@FXML
 	void btnSegonPlat(ActionEvent event) throws IOException {
+		obsListComanda.clear();
 		
+		for ( int i = 11; i < 20; i++ ) {
+			obsListComanda.add( String.valueOf( i ) );
+		}
+		
+		lsPlats.setItems( obsListComanda );
 	}
 	
 	@FXML
 	void btnCafes(ActionEvent event) throws IOException {
-	
+		obsListComanda.clear();
+		
+		for ( int i = 21; i < 30; i++ ) {
+			obsListComanda.add( String.valueOf( i ) );
+		}
+		
+		lsPlats.setItems( obsListComanda );
 	}
 	
 	@FXML
 	void btnBeguda(ActionEvent event) throws IOException {
-	
+		obsListComanda.clear();
+		
+		for ( int i = 31; i < 40; i++ ) {
+			obsListComanda.add( String.valueOf( i ) );
+		}
+		
+		lsPlats.setItems( obsListComanda );
 	}
 	
 	@FXML
 	void btnPostres(ActionEvent event) throws IOException {
-	
+		obsListComanda.clear();
+		
+		for ( int i = 41; i < 50; i++ ) {
+			obsListComanda.add( String.valueOf( i ) );
+		}
+		
+		lsPlats.setItems( obsListComanda );
 	}
 	
 	@FXML
