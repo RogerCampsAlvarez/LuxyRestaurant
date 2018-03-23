@@ -35,27 +35,27 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="btnPrimerPlat" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="PRIMER PLAT" GridPane.rowIndex="2">
+      <Button fx:id="btnPrimerPlat" mnemonicParsing="false" onAction="#btnPrimerPlat" prefHeight="50.0" prefWidth="175.0" text="PRIMER PLAT" GridPane.rowIndex="2">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnSegonPlat" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="SEGON PLAT" GridPane.rowIndex="3">
+      <Button fx:id="btnSegonPlat" mnemonicParsing="false" onAction="#btnSegonPlat" prefHeight="50.0" prefWidth="175.0" text="SEGON PLAT" GridPane.rowIndex="3">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnPostres" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="POSTRES" GridPane.rowIndex="4">
+      <Button fx:id="btnPostres" mnemonicParsing="false" onAction="#btnPostres" prefHeight="50.0" prefWidth="175.0" text="POSTRES" GridPane.rowIndex="4">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnCafes" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="CAFÈS" GridPane.rowIndex="5">
+      <Button fx:id="btnCafes" mnemonicParsing="false" onAction="#btnCafes" prefHeight="50.0" prefWidth="175.0" text="CAFÈS" GridPane.rowIndex="5">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnBegudes" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" text="BEGUDES" GridPane.rowIndex="6">
+      <Button fx:id="btnBegudes" mnemonicParsing="false" onAction="#btnCafes" prefHeight="50.0" prefWidth="175.0" text="BEGUDES" GridPane.rowIndex="6">
          <font>
             <Font size="24.0" />
          </font>

@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class MenuController {
 
 	@FXML
-	private ListView lsPlats;
+	private ListView<String> lsPlats;
 	
 	@FXML
 	private Button btnPrimerPlat;
