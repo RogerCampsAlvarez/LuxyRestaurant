@@ -61,7 +61,6 @@ public class MainController {
 			primaryStage.setTitle("LuxyRestaurant");
 			primaryStage.setScene(new Scene(parent));
 			primaryStage.show();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

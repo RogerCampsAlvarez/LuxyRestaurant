@@ -39,35 +39,38 @@ public class StockController {
     }
     
     void loadList() {
+    	//TODO load from DB
     	StockCategory catCarnics = new StockCategory("Productes Càrnics");
-    	catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
-    	catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
-    	catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
-    	catCarnics.productesList.add(new StockItem(4, "Bistec", 6));
+	    	catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
+	    	catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
+	    	catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
+	    	catCarnics.productesList.add(new StockItem(4, "Bistec", 6));
     	categoryList.add(catCarnics);
     	
     	StockCategory catMarisc = new StockCategory("Marisc");
-    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
-    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
-    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
+	    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
+	    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
+	    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
     	categoryList.add(catMarisc);
     	
     	categoryListView.setItems(categoryList);
 		stockListView.setItems(stockList);
     }
     
+    /**
+     * Funció que es crida al iniciar la escena
+     */
 	public void initialize() {
 		loadList();
 		
 		categoryListView.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			System.out.println(nv);
+			System.out.println("\n"+nv);
 			List<StockItem> productes = ((StockCategory)nv).productesList;
 			stockList.clear();
 			for(StockItem item : productes) {
 				System.out.println(item);
 				stockList.add(item);
 			}
-           // System.out.println(categoryListView.getSelectionModel().getSelectedItems().get(0));
         });
 			
 	}

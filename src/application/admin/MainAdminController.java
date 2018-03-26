@@ -66,19 +66,4 @@ public class MainAdminController {
 	void cmdAbout(ActionEvent event) throws Exception {
 		new AboutController().initialize(new Stage());
 	}
-/*
-	public void initialize(Stage primaryStage) {
-		try {
-
-			Parent parent = FXMLLoader.load(getClass().getResource("MainAdmin.fxml"));
-			primaryStage.setTitle("LuxyRestaurant-Admin");
-			primaryStage.setScene(new Scene(parent));
-			// primaryStage.initStyle(StageStyle.UTILITY);
-			primaryStage.show();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}*/
 }

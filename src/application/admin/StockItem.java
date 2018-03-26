@@ -17,6 +17,7 @@ public class StockItem {
 		return id+"- "+nom+" x"+quantitat;
 	}
 }
+
 class StockCategory {
 	String nom;
 	ArrayList<StockItem> productesList = new ArrayList<StockItem>();
