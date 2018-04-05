@@ -24,6 +24,10 @@ public class MainAdminController {
 	private Button btnStock;
 	@FXML
 	private Button btnTaules;
+	@FXML 
+	private Button btnCuina;
+	@FXML
+	private Button btnBegudes;
 	@FXML
 	private Button btnBack;
 	@FXML
@@ -46,6 +50,14 @@ public class MainAdminController {
 		Stage stage = (Stage) btnTaules.getScene().getWindow();
 		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_TAULES);
 	}
+	
+	@FXML
+	void cmdCuina(ActionEvent event) throws Exception {
+		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Cuina.fxml"));
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) btnCuina.getScene().getWindow();
+		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_CUINA);
+	}
 
 	@FXML
 	void cmdBack(ActionEvent event) throws IOException {
@@ -66,4 +78,5 @@ public class MainAdminController {
 	void cmdAbout(ActionEvent event) throws Exception {
 		new AboutController().initialize(new Stage());
 	}
+
 }

@@ -8,7 +8,8 @@ public class Strings {
 		TITLE_CLIENT_OPINAR = "Opinar",
 		TITLE_MAIN_ADMIN = "Admin",
 		TITLE_ADMIN_STOCK = "Control d'Stock",
-		TITLE_ADMIN_TAULES = "Control de Taules"
+		TITLE_ADMIN_TAULES = "Control de Taules",
+		TITLE_ADMIN_CUINA = "Cuina"
 		;
 		
 }
