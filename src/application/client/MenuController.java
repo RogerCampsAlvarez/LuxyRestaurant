@@ -1,12 +1,11 @@
 package application.client;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
-import application.BaseDades;
 import application.ConnexioBD;
 import application.Strings;
 import application.Util;
-import application.VariablesBaseDades;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,6 +62,9 @@ public class MenuController {
 	private String sBeguda;
 	private String sCafe;
 	private int iPlat = 0;
+	
+	ConnexioBD con = null;
+
 
 	/**
 	 * Funcio inical
@@ -140,20 +142,19 @@ public class MenuController {
 	}
 
 	private void obternirPlats(String sTipus) {
-		VariablesBaseDades vBD = new VariablesBaseDades();
+		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT nom FROM plats WHERE en_estoc = true AND tipus = '" + sTipus + "';";
-		ConnexioBD con = null;
 		try {
-			con = new ConnexioBD(vBD);
-			con.queryDB(sQuery, vBD);
+			con = new ConnexioBD();
+			ResultSet rs = con.queryDB(sQuery);
 
-			while (vBD.rs.next()) {
-				obsListComanda.add(vBD.rs.getString("nom"));
+			while (rs.next()) {
+				obsListComanda.add(rs.getString("nom"));
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB(vBD);
+			con.desconnectarDB();
 		}
 	}
 
@@ -196,21 +197,20 @@ public class MenuController {
 	}
 
 	private void obtenirBeguda(boolean bCafe) {
-		VariablesBaseDades vBD = new VariablesBaseDades();
+		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT nom FROM begudes WHERE en_estoc = true AND cafe = " + bCafe + ";";
 
-		ConnexioBD con = null;
 		try {
-			con = new ConnexioBD(vBD);
-			con.queryDB(sQuery, vBD);
+			con = new ConnexioBD();
+			ResultSet rs = con.queryDB(sQuery);
 
-			while (vBD.rs.next()) {
-				obsListComanda.add(vBD.rs.getString("nom"));
+			while (rs.next()) {
+				obsListComanda.add(rs.getString("nom"));
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB(vBD);
+			con.desconnectarDB();
 		}
 	}
 
@@ -229,36 +229,36 @@ public class MenuController {
 		int iCafe = obtenirID(comandaClient.getsCafe());
 		int iBeguda = obtenirID(comandaClient.getsBeguda());
 
-		VariablesBaseDades vBD = new VariablesBaseDades();
+		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "INSERT INTO comandes(taula, primer, segon, postre, beguda, acavat)" + "VALUES (0, '"
 				+ iPrimerPlat + "','" + iSegonPlat + "', '" + iPostres + "', '" + iBeguda + "', FALSE);";
 
 		try {
-			BaseDades.ConnectarDB(vBD);
-			BaseDades.updateDB(sQuery, vBD);
+			con = new ConnexioBD();
+			con.updateDB(sQuery);
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			BaseDades.desconnectarDB(vBD);
+			con.desconnectarDB();
 		}
 
 	}
 
 	private int obtenirID(String sPlat) {
-		VariablesBaseDades vBD = new VariablesBaseDades();
+		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT id FROM plats WHERE nom = '" + sPlat + "';";
 
 		try {
-			BaseDades.ConnectarDB(vBD);
-			BaseDades.queryDB(sQuery, vBD);
-
-			if (vBD.rs.next()) {
-				return vBD.rs.getInt("id");
+			con = new ConnexioBD();
+			ResultSet rs = con.queryDB(sQuery);
+			
+			if (rs.next()) {
+				return rs.getInt("id");
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			BaseDades.desconnectarDB(vBD);
+			con.desconnectarDB();
 		}
 		return iPlat;
 	}
@@ -266,20 +266,19 @@ public class MenuController {
 	private void platSeleccionat() {
 
 		txtPlat.setText(sPlat);
-		VariablesBaseDades vBD = new VariablesBaseDades();
+		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT descripcio FROM plats WHERE nom = '" + sPlat + "';";
 
 		try {
-			BaseDades.ConnectarDB(vBD);
-			BaseDades.queryDB(sQuery, vBD);
-
-			if (vBD.rs.next()) {
-				txtDescripcio.setText(vBD.rs.getString("descripcio"));
+			con = new ConnexioBD();
+			ResultSet rs = con.queryDB(sQuery);
+			if (rs.next()) {
+				txtDescripcio.setText(rs.getString("descripcio"));
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			BaseDades.desconnectarDB(vBD);
+			con.desconnectarDB();
 		}
 
 		btnDemanar.setVisible(true);

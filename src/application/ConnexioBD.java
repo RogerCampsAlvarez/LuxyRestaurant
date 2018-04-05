@@ -1,30 +1,29 @@
 package application;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ConnexioBD {
 
+	
 	/**
 	 * CONNEXIÓ BASE DE DADES
 	 * 
 	 * @param db
-	 */
-	
-	public ConnexioBD(VariablesBaseDades db) {
-		db.conn = null;
+	 */	
+	Connection con = null;
+	public ConnexioBD() {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			db.conn = DriverManager.getConnection("jdbc:postgresql://144.217.11.3/luxyrestaurant", "luxy", "LuxyRestaurant");
+			con = DriverManager.getConnection("jdbc:postgresql://144.217.11.3/luxyrestaurant", "luxy", "LuxyRestaurant");
 		} catch (Exception e) {
 			e.getStackTrace();
 		}
 
-		try {
-			db.stmt = db.conn.createStatement();
-		} catch (Exception e) {
-			e.getStackTrace();
-		}
+		
 	}
 
 	/**
@@ -33,11 +32,14 @@ public class ConnexioBD {
 	 * @param sQuery
 	 * @param db
 	 */
-	public void queryDB(String sQuery, VariablesBaseDades db) {
+	public ResultSet queryDB(String sQuery) {
+		ResultSet rs = null;
 		try {
-			db.rs = db.stmt.executeQuery(sQuery);
-		} catch (Exception e) {
+			rs = con.createStatement().executeQuery(sQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return rs;
 	}
 
 	/**
@@ -46,10 +48,10 @@ public class ConnexioBD {
 	 * @param sQuery
 	 * @param db
 	 */
-	public void updateDB(String sQuery, VariablesBaseDades db) {
+	public void updateDB(String sQuery) {
 		try {
-			db.stmt.executeUpdate(sQuery);
-			db.conn.commit();
+			con.createStatement().executeUpdate(sQuery);
+			//db.conn.commit();
 		} catch (Exception e) {
 		}
 	}
@@ -59,10 +61,9 @@ public class ConnexioBD {
 	 * 
 	 * @param db
 	 */
-	public void desconnectarDB(VariablesBaseDades db) {
+	public void desconnectarDB() {
 		try {
-			db.stmt.close();
-			db.conn.close();
+			con.close();
 		} catch (Exception e) {
 		}
 	}
