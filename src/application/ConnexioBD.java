@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnexioBD {
 
@@ -55,7 +56,25 @@ public class ConnexioBD {
 		} catch (Exception e) {
 		}
 	}
-
+	
+	/**
+	 * RETORNA L'STATEMENT DE LA CONEXIO
+	 * 
+	 * @return
+	 * @throws SQLException
+	 */
+	public Statement GetStatement(){
+		Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+			return stmt;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return stmt;
+		
+	}
 	/**
 	 * DESCONEXIÓ BASE DE DADES
 	 * 

@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Objectes {
+public class Objectes  {
 	static class Beguda{
 		int id;
 		String nom;
@@ -27,7 +27,7 @@ public class Objectes {
 	}
 
 	//--------------------------------------------------------------------------------------------------
-	public static class Plat{
+	public static class Plat {
 		int id;
 		String nom;
 		Boolean en_estoc;
@@ -38,19 +38,25 @@ public class Objectes {
 		double preu;
 		ResultSet rs;
 		
-		public Plat(Statement stmt, int id) throws SQLException {
-			rs = stmt.executeQuery("Select * from plats where id="+id);
-			
-			while(rs.next()) {
-				this.id = rs.getInt("id");
-				this.nom = rs.getString("nom");
-				this. en_estoc = rs.getBoolean("en_estoc");
-				this.rating = rs.getDouble("rating");
-				this.vots = rs.getInt("vots");
-				this.ordre_plat = rs.getInt("ordre_plat");
-				this.zona = rs.getInt("zona");
-				this.preu = rs.getDouble("preu");
+		public Plat(Statement stmt, int id){
+			try {
+				rs = stmt.executeQuery("Select * from plats where id="+id);
+				while(rs.next()) {
+					this.id = rs.getInt("id");
+					this.nom = rs.getString("nom");
+					this. en_estoc = rs.getBoolean("en_estoc");
+					this.rating = rs.getDouble("rating");
+					this.vots = rs.getInt("vots");
+					this.ordre_plat = rs.getInt("ordre_plat");
+					this.zona = rs.getInt("zona");
+					this.preu = rs.getDouble("preu");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			
 		}
 	}
 	//--------------------------------------------------------------------------------------------------

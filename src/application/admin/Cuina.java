@@ -7,6 +7,7 @@ import java.sql.Statement;
 import application.Strings;
 import application.Util;
 import application.Objectes.*;
+import application.ConnexioBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,8 +35,13 @@ public class Cuina {
 	@FXML
 	TableColumn tc_dos;
 	
-			
-	Plat p = new Plat(stmt,1);
+	
+	ConnexioBD conn = new ConnexioBD();
+	Statement stmt = conn.GetStatement();
+	
+	private final ObservableList<Plat> data
+    = FXCollections.observableArrayList(
+             new Plat(stmt,1));
 	
 	public void initialize() {
 		
