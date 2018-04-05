@@ -126,7 +126,7 @@ public class MenuController {
 	void btnPostres(ActionEvent event) throws IOException {
 		obsListComanda.clear();
         btnDemanar.setVisible( false );
-		iPlat = 4;
+		iPlat = 2;
 		
 		obternirPlats("postres");
 		
@@ -164,7 +164,7 @@ public class MenuController {
 	void btnCafes(ActionEvent event) throws IOException {
 		obsListComanda.clear();
         btnDemanar.setVisible( false );
-		iPlat = 2;
+		iPlat = 4;
 		
 		obtenirBeguda(true);
 		
@@ -220,12 +220,22 @@ public class MenuController {
 	void btnEnviar(ActionEvent event) throws IOException {
 		System.out.println( "Enviant..." );
 		
+		enviarComanda();
+		
+	}
+	
+	private void enviarComanda() {
+		int iPrimerPlat = obtenirID( comandaClient.getsPrimerPlat() );
+		int iSegonPlat = obtenirID( comandaClient.getsSegonPlat() );
+		int iPostres = obtenirID( comandaClient.getsPostres() );
+		int iCafe = obtenirID( comandaClient.getsCafe() );
+		int iBeguda = obtenirID( comandaClient.getsBeguda() );
+		
 		VariablesBaseDades vBD = new VariablesBaseDades();
-		String sQuery = "INSERT INTO public.comandes(" + 
-				"            taula, primer, segon, postre, beguda, acavat)" + 
-				"    VALUES (0, '" + comandaClient.getsPrimerPlat()+ "','" 
-				+ comandaClient.getsSegonPlat()+ "', '" + comandaClient.getsPostres()+ "', '" 
-				+ comandaClient.getsBeguda()+ "', FALSE);";
+		String sQuery = "INSERT INTO comandes(taula, primer, segon, postre, beguda, acavat)" + 
+				"VALUES (0, '" + iPrimerPlat + "','" 
+				+ iSegonPlat + "', '" + iPostres + "', '" 
+				+ iBeguda + "', FALSE);";
 		
 		try  {
 			BaseDades.ConnectarDB( vBD );
@@ -238,17 +248,23 @@ public class MenuController {
 		
 	}
 	
-	private void enviarComanda() {
-		String sPrimerPlat = comandaClient.getsPrimerPlat();
-		String sSegonPlat = comandaClient.getsSegonPlat();
-		String sPostres = comandaClient.getsPostres();
-		String sCafe = comandaClient.getsCafe();
-		String sBeguda = comandaClient.getsBeguda();
-		
-		/*
-		 * Enviar la comnada a la base de dades
-		 */
-		
+	private int obtenirID( String sPlat ) {
+		VariablesBaseDades vBD = new VariablesBaseDades();
+        String sQuery = "SELECT id FROM plats WHERE nom = '" + sPlat + "';";
+        
+        try {
+        	BaseDades.ConnectarDB( vBD );
+        	BaseDades.QueryDB( sQuery, vBD );
+        	
+        	if ( vBD.rs.next() ) {
+        		return vBD.rs.getInt( "id" );
+        	}
+        } catch ( Exception e) {
+			e.getStackTrace();
+		} finally {
+			BaseDades.DesconnectarDB( vBD );
+		}
+		return iPlat;
 	}
 	
 	private void platSeleccionat() {
@@ -265,7 +281,7 @@ public class MenuController {
         		txtDescripcio.setText( vBD.rs.getString( "descripcio" ) );
         	}
         } catch ( Exception e) {
-			// TODO: handle exception
+			e.getStackTrace();
 		} finally {
 			BaseDades.DesconnectarDB( vBD );
 		}
