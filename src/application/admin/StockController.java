@@ -1,8 +1,11 @@
 package application.admin;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import application.ConnexioBD;
 import application.Strings;
 import application.Util;
 import javafx.collections.FXCollections;
@@ -40,21 +43,37 @@ public class StockController {
     
     void loadList() {
     	//TODO load from DB
+    	ConnexioBD con = new ConnexioBD();
+    	ResultSet rs = con.queryDB("select * from plats");
+    	
     	StockCategory catCarnics = new StockCategory("Productes Càrnics");
-	    	catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
-	    	catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
-	    	catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
-	    	catCarnics.productesList.add(new StockItem(4, "Bistec", 6));
-    	categoryList.add(catCarnics);
-    	
-    	StockCategory catMarisc = new StockCategory("Marisc");
-	    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
-	    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
-	    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
-    	categoryList.add(catMarisc);
-    	
-    	categoryListView.setItems(categoryList);
-		stockListView.setItems(stockList);
+			try {
+				int index=0;
+				while (rs.next()) {
+					catCarnics.productesList.add(new StockItem(index++, rs.getString("nom"), 4));
+				}
+			
+		    	/*catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
+		    	catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
+		    	catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
+		    	catCarnics.productesList.add(new StockItem(4, "Bistec", 6));*/
+	    	categoryList.add(catCarnics);
+	    	
+	    	StockCategory catMarisc = new StockCategory("Marisc");
+		    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
+		    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
+		    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
+	    	categoryList.add(catMarisc);
+	    	
+	    	categoryListView.setItems(categoryList);
+			stockListView.setItems(stockList);
+			
+			} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    				
+			
     }
     
     /**
