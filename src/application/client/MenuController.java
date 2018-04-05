@@ -1,24 +1,31 @@
 package application.client;
 
 import java.io.IOException;
+import java.util.List;
 
+import application.BaseDades;
 import application.Strings;
 import application.Util;
+import application.VariablesBaseDades;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MenuController {
 
 	@FXML
-	private ListView<String> lsPlats;
+	private ListView lvPlats;
 	
 	@FXML
 	private Button btnPrimerPlat;
@@ -44,18 +51,31 @@ public class MenuController {
 	@FXML
 	private Button btnDemanar;
 	
-	private ComandaClient comClient;
+	@FXML
+	private Text txtPlat;
+	
+	@FXML
+	private Text txtDescripcio;
+	
+	private ComandaClient comandaClient;
 	private ObservableList<String> obsListComanda = FXCollections.observableArrayList();
+	
+	private String sPlat;
+	private String sBeguda;
+	private String sCafe;
+	private int iPlat = 0;
 
 	/**
 	 * Funcio inical
 	 */
 	public void initialize() {
-		comClient  = new ComandaClient();
+		comandaClient  = new ComandaClient();
 		
 		btnEnviar.setVisible( false );
+		btnDemanar.setVisible( false );
 		
 	}
+	
 	
 	@FXML
 	void btnBack(ActionEvent event) throws IOException {
@@ -68,85 +88,216 @@ public class MenuController {
 	@FXML
 	void btnPrimerPlat(ActionEvent event) throws IOException {
 		obsListComanda.clear();
+		iPlat = 0;
 		
-		for ( int i = 0; i < 10; i++ ) {
-			obsListComanda.add( String.valueOf( i ) );
-		}
+		obternirPlats( "primer" );
 		
-		lsPlats.setItems( obsListComanda );
+		lvPlats.setItems( obsListComanda );
+		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+	        @Override
+	        public void handle(MouseEvent event) {
+	        	sPlat = (String) lvPlats.getSelectionModel().getSelectedItem();
+	        	platSeleccionat();
+	        }
+	    });
 	}
 	
 	@FXML
 	void btnSegonPlat(ActionEvent event) throws IOException {
 		obsListComanda.clear();
+        btnDemanar.setVisible( false );
+		iPlat = 1;
+
+		obternirPlats( "segon" );
 		
-		for ( int i = 11; i < 20; i++ ) {
-			obsListComanda.add( String.valueOf( i ) );
-		}
-		
-		lsPlats.setItems( obsListComanda );
-	}
-	
-	@FXML
-	void btnCafes(ActionEvent event) throws IOException {
-		obsListComanda.clear();
-		
-		for ( int i = 21; i < 30; i++ ) {
-			obsListComanda.add( String.valueOf( i ) );
-		}
-		
-		lsPlats.setItems( obsListComanda );
-	}
-	
-	@FXML
-	void btnBeguda(ActionEvent event) throws IOException {
-		obsListComanda.clear();
-		
-		for ( int i = 31; i < 40; i++ ) {
-			obsListComanda.add( String.valueOf( i ) );
-		}
-		
-		lsPlats.setItems( obsListComanda );
+		lvPlats.setItems( obsListComanda );
+		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+	        @Override
+	        public void handle(MouseEvent event) {
+	        	sPlat = (String) lvPlats.getSelectionModel().getSelectedItem();
+	        	platSeleccionat();
+	        }
+	    });
 	}
 	
 	@FXML
 	void btnPostres(ActionEvent event) throws IOException {
 		obsListComanda.clear();
+        btnDemanar.setVisible( false );
+		iPlat = 4;
 		
-		for ( int i = 41; i < 50; i++ ) {
-			obsListComanda.add( String.valueOf( i ) );
+		obternirPlats("postres");
+		
+		lvPlats.setItems( obsListComanda );
+		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+	        @Override
+	        public void handle(MouseEvent event) {
+	        	sPlat = (String) lvPlats.getSelectionModel().getSelectedItem();
+	        	platSeleccionat();
+	        }
+	    });
+	}
+	
+	
+	private void obternirPlats( String sTipus ) {
+		VariablesBaseDades vBD = new VariablesBaseDades();
+		String sQuery = "SELECT nom FROM plats WHERE en_estoc = true AND tipus = '" + sTipus + "';";
+		
+		try  {
+			BaseDades.ConnectarDB( vBD );
+			BaseDades.QueryDB( sQuery , vBD);
+			
+			while ( vBD.rs.next() ) {
+				obsListComanda.add( vBD.rs.getString( "nom") );
+			}
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			BaseDades.DesconnectarDB( vBD );
 		}
+	}
+	
+	@FXML
+	void btnCafes(ActionEvent event) throws IOException {
+		obsListComanda.clear();
+        btnDemanar.setVisible( false );
+		iPlat = 2;
 		
-		lsPlats.setItems( obsListComanda );
+		obtenirBeguda(true);
+		
+		lvPlats.setItems( obsListComanda );
+		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+	        @Override
+	        public void handle(MouseEvent event) {
+	        	sCafe = (String) lvPlats.getSelectionModel().getSelectedItem();
+	        	platSeleccionat();
+	        }
+	    });
+	}
+	
+	@FXML
+	void btnBeguda(ActionEvent event) throws IOException {
+		obsListComanda.clear();
+        btnDemanar.setVisible( false );
+		iPlat = 3;
+		
+		obtenirBeguda(false);
+		
+		lvPlats.setItems( obsListComanda );
+		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+	        @Override
+	        public void handle(MouseEvent event) {
+	        	sBeguda = (String) lvPlats.getSelectionModel().getSelectedItem();
+	        	platSeleccionat();
+	        }
+	    });
+	}
+	
+	private void obtenirBeguda( boolean bCafe ) {
+		VariablesBaseDades vBD = new VariablesBaseDades();
+		String sQuery = "SELECT nom FROM begudes WHERE en_estoc = true AND cafe = " + bCafe + ";";
+		
+		try  {
+			BaseDades.ConnectarDB( vBD );
+			BaseDades.QueryDB( sQuery , vBD);
+			
+			while ( vBD.rs.next() ) {
+				obsListComanda.add( vBD.rs.getString( "nom") );
+			}
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			BaseDades.DesconnectarDB( vBD );
+		}
 	}
 	
 	@FXML
 	void btnEnviar(ActionEvent event) throws IOException {
-	
+		System.out.println( "Enviant..." );
+		
+		VariablesBaseDades vBD = new VariablesBaseDades();
+		String sQuery = "INSERT INTO public.comandes(" + 
+				"            taula, primer, segon, postre, beguda, acavat)" + 
+				"    VALUES (0, '" + comandaClient.getsPrimerPlat()+ "','" 
+				+ comandaClient.getsSegonPlat()+ "', '" + comandaClient.getsPostres()+ "', '" 
+				+ comandaClient.getsBeguda()+ "', FALSE);";
+		
+		try  {
+			BaseDades.ConnectarDB( vBD );
+			BaseDades.UpdateDB( sQuery , vBD);
+		} catch( Exception e ) {
+			e.getStackTrace();
+		} finally {
+			BaseDades.DesconnectarDB( vBD );
+		}
 		
 	}
 	
 	private void enviarComanda() {
-		String sPrimerPlat = comClient.getsPrimerPlat();
-		String sSegonPlat = comClient.getsSegonPlat();
-		String sPostres = comClient.getsPostres();
-		String sCafe = comClient.getsCafe();
-		String sBeguda = comClient.getsBeguda();
+		String sPrimerPlat = comandaClient.getsPrimerPlat();
+		String sSegonPlat = comandaClient.getsSegonPlat();
+		String sPostres = comandaClient.getsPostres();
+		String sCafe = comandaClient.getsCafe();
+		String sBeguda = comandaClient.getsBeguda();
 		
 		/*
 		 * Enviar la comnada a la base de dades
 		 */
 		
 	}
+	
+	private void platSeleccionat() {
+
+        txtPlat.setText( sPlat );
+        VariablesBaseDades vBD = new VariablesBaseDades();
+        String sQuery = "SELECT descripcio FROM plats WHERE nom = '" + sPlat + "';";
+        
+        try {
+        	BaseDades.ConnectarDB( vBD );
+        	BaseDades.QueryDB( sQuery, vBD );
+        	
+        	if ( vBD.rs.next() ) {
+        		txtDescripcio.setText( vBD.rs.getString( "descripcio" ) );
+        	}
+        } catch ( Exception e) {
+			// TODO: handle exception
+		} finally {
+			BaseDades.DesconnectarDB( vBD );
+		}
+        
+        btnDemanar.setVisible( true );
+	}
 
 	@FXML
 	void btnDemanar(ActionEvent event) throws IOException {
 	
-		//Comprovar plat
-		
-		//Afegir plat a l'0bjecte
+		//Comprova el plat seleccionat
+		switch ( iPlat ) {
+		case 0://Primr plat
+			comandaClient.setsPrimerPlat( sPlat );
+			break;
+		case 1://Segon Plat
+			comandaClient.setsSegonPlat( sPlat );
+			break;
+		case 2://Postres
+			comandaClient.setsPostres( sPlat );	
+			break;
+		case 3://Beguda
+			comandaClient.setsBeguda( sBeguda );		
+			break;
+		case 4://Cafes
+			comandaClient.setsCafe( sCafe );			
+			break;
+		default:
+			break;
+		}
 		
 		//Amaga o mostra el botor Enviar
-		btnEnviar.setVisible( comClient.comprovarEnvar() );
+		btnEnviar.setVisible( comandaClient.comprovarPlatsNull() );
 	}
 }

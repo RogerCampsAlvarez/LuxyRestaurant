@@ -21,12 +21,13 @@ public class ComandaClient {
 	 * COMPROVA QUE NO HI HA CAP CAMP BUIT
 	 * @return
 	 */
-	public boolean comprovarEnvar() {
+	public boolean comprovarPlatsNull() {
 		
 		if ( sPrimerPlat.equals( "" ) 
-				&& sSegonPlat.equals( "" )
-				&& sPostres.equals( "" )
-				&& sCafe.equals( "" ) ) {
+				|| sSegonPlat.equals( "" )
+				|| sPostres.equals( "" )
+				|| sCafe.equals( "" )
+				|| sBeguda.equals( "" )) {
 			
 			return false;
 			

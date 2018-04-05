@@ -55,7 +55,7 @@
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnBegudes" mnemonicParsing="false" onAction="#btnCafes" prefHeight="50.0" prefWidth="175.0" text="BEGUDES" GridPane.rowIndex="6">
+      <Button fx:id="btnBegudes" mnemonicParsing="false" onAction="#btnBeguda" prefHeight="50.0" prefWidth="175.0" text="BEGUDES" GridPane.rowIndex="6">
          <font>
             <Font size="24.0" />
          </font>
