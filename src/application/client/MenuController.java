@@ -22,40 +22,18 @@ import javafx.stage.Stage;
 
 public class MenuController {
 
-	@FXML
-	private ListView lvPlats;
+	@FXML private ListView lvPlats;
+	@FXML private Button btnPrimerPlat;
+	@FXML private Button btnSegonPlat;
+	@FXML private Button btnPostres;
+	@FXML private Button btnCafes;
+	@FXML private Button btnBeguda;
+	@FXML private Button btnBack;
+	@FXML private Button btnEnviar;
+	@FXML private Button btnDemanar;
+	@FXML private Text txtPlat;
+	@FXML private Text txtDescripcio;
 
-	@FXML
-	private Button btnPrimerPlat;
-
-	@FXML
-	private Button btnSegonPlat;
-
-	@FXML
-	private Button btnPostres;
-
-	@FXML
-	private Button btnCafes;
-
-	@FXML
-	private Button btnBeguda;
-
-	@FXML
-	private Button btnBack;
-
-	@FXML
-	private Button btnEnviar;
-
-	@FXML
-	private Button btnDemanar;
-
-	@FXML
-	private Text txtPlat;
-
-	@FXML
-	private Text txtDescripcio;
-
-	private ComandaClient comandaClient;
 	private ObservableList<String> obsListComanda = FXCollections.observableArrayList();
 
 	private String sPlat;
@@ -63,14 +41,13 @@ public class MenuController {
 	private String sCafe;
 	private int iPlat = 0;
 	
-	ConnexioBD con = null;
+	ConnexioBD conDB;
 
 
 	/**
 	 * Funcio inical
 	 */
 	public void initialize() {
-		comandaClient = new ComandaClient();
 
 		btnEnviar.setVisible(false);
 		btnDemanar.setVisible(false);
@@ -145,8 +122,8 @@ public class MenuController {
 		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT nom FROM plats WHERE en_estoc = true AND tipus = '" + sTipus + "';";
 		try {
-			con = new ConnexioBD();
-			ResultSet rs = con.queryDB(sQuery);
+			conDB = new ConnexioBD();
+			ResultSet rs = conDB.queryDB(sQuery);
 
 			while (rs.next()) {
 				obsListComanda.add(rs.getString("nom"));
@@ -154,7 +131,7 @@ public class MenuController {
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB();
+			conDB.desconnectarDB();
 		}
 	}
 
@@ -201,8 +178,8 @@ public class MenuController {
 		String sQuery = "SELECT nom FROM begudes WHERE en_estoc = true AND cafe = " + bCafe + ";";
 
 		try {
-			con = new ConnexioBD();
-			ResultSet rs = con.queryDB(sQuery);
+			conDB = new ConnexioBD();
+			ResultSet rs = conDB.queryDB(sQuery);
 
 			while (rs.next()) {
 				obsListComanda.add(rs.getString("nom"));
@@ -210,7 +187,7 @@ public class MenuController {
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB();
+			conDB.desconnectarDB();
 		}
 	}
 
@@ -223,23 +200,23 @@ public class MenuController {
 	}
 
 	private void enviarComanda() {
-		int iPrimerPlat = obtenirID(comandaClient.getsPrimerPlat());
-		int iSegonPlat = obtenirID(comandaClient.getsSegonPlat());
-		int iPostres = obtenirID(comandaClient.getsPostres());
-		int iCafe = obtenirID(comandaClient.getsCafe());
-		int iBeguda = obtenirID(comandaClient.getsBeguda());
+		int iPrimerPlat = obtenirID(MainClientController.comClient.getsPrimerPlat());
+		int iSegonPlat = obtenirID(MainClientController.comClient.getsSegonPlat());
+		int iPostres = obtenirID(MainClientController.comClient.getsPostres());
+		int iCafe = obtenirID(MainClientController.comClient.getsCafe());
+		int iBeguda = obtenirID(MainClientController.comClient.getsBeguda());
 
 		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "INSERT INTO comandes(taula, primer, segon, postre, beguda, acavat)" + "VALUES (0, '"
 				+ iPrimerPlat + "','" + iSegonPlat + "', '" + iPostres + "', '" + iBeguda + "', FALSE);";
 
 		try {
-			con = new ConnexioBD();
-			con.updateDB(sQuery);
+			conDB = new ConnexioBD();
+			conDB.updateDB(sQuery);
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB();
+			conDB.desconnectarDB();
 		}
 
 	}
@@ -249,8 +226,8 @@ public class MenuController {
 		String sQuery = "SELECT id FROM plats WHERE nom = '" + sPlat + "';";
 
 		try {
-			con = new ConnexioBD();
-			ResultSet rs = con.queryDB(sQuery);
+			conDB = new ConnexioBD();
+			ResultSet rs = conDB.queryDB(sQuery);
 			
 			if (rs.next()) {
 				return rs.getInt("id");
@@ -258,7 +235,7 @@ public class MenuController {
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB();
+			conDB.desconnectarDB();
 		}
 		return iPlat;
 	}
@@ -270,15 +247,15 @@ public class MenuController {
 		String sQuery = "SELECT descripcio FROM plats WHERE nom = '" + sPlat + "';";
 
 		try {
-			con = new ConnexioBD();
-			ResultSet rs = con.queryDB(sQuery);
+			conDB = new ConnexioBD();
+			ResultSet rs = conDB.queryDB(sQuery);
 			if (rs.next()) {
 				txtDescripcio.setText(rs.getString("descripcio"));
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
-			con.desconnectarDB();
+			conDB.desconnectarDB();
 		}
 
 		btnDemanar.setVisible(true);
@@ -289,26 +266,26 @@ public class MenuController {
 
 		// Comprova el plat seleccionat
 		switch (iPlat) {
-		case 0:// Primr plat
-			comandaClient.setsPrimerPlat(sPlat);
-			break;
-		case 1:// Segon Plat
-			comandaClient.setsSegonPlat(sPlat);
-			break;
-		case 2:// Postres
-			comandaClient.setsPostres(sPlat);
-			break;
-		case 3:// Beguda
-			comandaClient.setsBeguda(sBeguda);
-			break;
-		case 4:// Cafes
-			comandaClient.setsCafe(sCafe);
-			break;
-		default:
-			break;
+			case 0:// Primr plat
+				MainClientController.comClient.setsPrimerPlat(sPlat);
+				break;
+			case 1:// Segon Plat
+				MainClientController.comClient.setsSegonPlat(sPlat);
+				break;
+			case 2:// Postres
+				MainClientController.comClient.setsPostres(sPlat);
+				break;
+			case 3:// Beguda
+				MainClientController.comClient.setsBeguda(sBeguda);
+				break;
+			case 4:// Cafes
+				MainClientController.comClient.setsCafe(sCafe);
+				break;
+			default:
+				break;
 		}
 
 		// Amaga o mostra el botor Enviar
-		btnEnviar.setVisible(comandaClient.comprovarPlatsNull());
+		btnEnviar.setVisible(MainClientController.comClient.comprovarPlatsNull());
 	}
 }

@@ -19,19 +19,16 @@ import javafx.stage.Stage;
 
 public class MainClientController {
 
-	@FXML
-	private Button btnMenjar;
-	@FXML
-	private Button btnBeure;
-	@FXML
-	private Button btnBack;
-	@FXML
-	private Button btnOpinio;
-	@FXML
-	private MenuItem mnClose;
-	@FXML
-	private MenuItem closeButton;
+	@FXML private Button btnMenjar;
+	@FXML private Button btnBeure;
+	@FXML private Button btnBack;
+	@FXML private Button btnOpinio;
+	@FXML private MenuItem mnClose;
+	@FXML private MenuItem closeButton;
 
+	public static ComandaClient comClient = new ComandaClient();
+	public static ComandaClient comClientExtra = new ComandaClient();
+	
 	@FXML
 	void cmdMenjar(ActionEvent event) throws Exception {
 		Stage stage = (Stage) btnMenjar.getScene().getWindow();
