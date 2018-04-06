@@ -30,7 +30,8 @@ public class OpinionsController {
 	@FXML private ListView lvComentaris;
 	
 	private ConnexioBD conDB;
-	private ObservableList<ValoracioPlats> obsListComanda = FXCollections.observableArrayList();
+	private ObservableList<String> obsListComanda = FXCollections.observableArrayList();
+	private ObservableList<ValoracioPlats> obsListValoracions = FXCollections.observableArrayList();
 	
 	private String sPlat;
 	
@@ -88,20 +89,22 @@ public class OpinionsController {
 	
 	private void cercarValoracions() {
 		
-		String sQuery = "SELECT opinio, valoracio FROM opinio_plat WHERE id_plat = SELECT id FROM plats WHERE nom = '" + sPlat + "';";
+		String sQuery = "SELECT opinio, valoracio FROM opinio_plat WHERE id_plat = (SELECT id FROM plats WHERE nom = '" + sPlat + "');";
 
 		try {
 			conDB = new ConnexioBD();
 			ResultSet rs = conDB.queryDB(sQuery);
 
 			while (rs.next()) {
-				obsListComanda.add(rs.getString("nom"));
+				obsListValoracions.add( new ValoracioPlats(rs.getString("opinio"), rs.getDouble("valoracio")));
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {
 			conDB.desconnectarDB();
 		}
+		
+		lvComentaris.setItems(obsListValoracions);
 		
 	}
 	

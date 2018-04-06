@@ -193,8 +193,7 @@ public class MenuController {
 
 	@FXML
 	void btnEnviar(ActionEvent event) throws IOException {
-		System.out.println("Enviant...");
-
+		
 		enviarComanda();
 
 	}
