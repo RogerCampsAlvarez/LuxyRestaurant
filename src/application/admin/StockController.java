@@ -80,7 +80,12 @@ public class StockController {
      * Funció que es crida al iniciar la escena
      */
 	public void initialize() {
-		loadList();
+		new Thread() {
+			@Override
+			public void run() {
+				loadList();
+			}
+		}.start();
 		
 		categoryListView.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
 			System.out.println("\n"+nv);
