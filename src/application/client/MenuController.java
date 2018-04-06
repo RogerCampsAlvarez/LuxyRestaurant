@@ -120,7 +120,7 @@ public class MenuController {
 
 	private void obternirPlats(String sTipus) {
 		//VariablesBaseDades vBD = new VariablesBaseDades();
-		String sQuery = "SELECT nom FROM plats WHERE en_estoc = true AND tipus = '" + sTipus + "';";
+		String sQuery = "SELECT nom FROM plats WHERE  quantitat > 0 AND tipus = '" + sTipus + "';";
 		try {
 			conDB = new ConnexioBD();
 			ResultSet rs = conDB.queryDB(sQuery);
@@ -175,7 +175,7 @@ public class MenuController {
 
 	private void obtenirBeguda(boolean bCafe) {
 		//VariablesBaseDades vBD = new VariablesBaseDades();
-		String sQuery = "SELECT nom FROM begudes WHERE en_estoc = true AND cafe = " + bCafe + ";";
+		String sQuery = "SELECT nom FROM begudes WHERE quantitat > 0 AND cafe = " + bCafe + ";";
 
 		try {
 			conDB = new ConnexioBD();
