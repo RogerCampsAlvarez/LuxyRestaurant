@@ -17,6 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -31,8 +33,11 @@ public class StockController {
 	@FXML
 	private ListView<StockItem> stockListView;
 	
-	ObservableList<StockCategory> categoryList = FXCollections.observableArrayList();
-	ObservableList<StockItem> stockList = FXCollections.observableArrayList();
+	@FXML
+	private TextField tfQtat;
+	
+	ObservableList<StockCategory> olCategory = FXCollections.observableArrayList();
+	ObservableList<StockItem> olStock = FXCollections.observableArrayList();
 	
     @FXML
     void btnBack(ActionEvent event) throws IOException {
@@ -42,7 +47,7 @@ public class StockController {
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
     }
     
-    void loadList() {
+    void loadData() {
     	//TODO load from DB
     	ConnexioBD con = new ConnexioBD();
     	
@@ -52,10 +57,7 @@ public class StockController {
     	try {
 			while (rs.next()) {
 				categories.add(new StockCategory(rs.getString("cat")));
-			}
-    	
-			//StockCategory catCarnics = new StockCategory("Productes Càrnics");
-    	
+			}    	
 			rs = con.queryDB("select * from plats");
 		
 			while (rs.next()) {
@@ -63,27 +65,21 @@ public class StockController {
 			}
 		
 			for(int i=0;i<categories.size();i++) {
-		    	categoryList.add(categories.get(i));
+		    	olCategory.add(categories.get(i));
 			}
 			
-	    	/*catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
-	    		catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
-	    		catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
-	    		catCarnics.productesList.add(new StockItem(4, "Bistec", 6));
-	    	StockCategory catMarisc = new StockCategory("Marisc");
-		    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
-		    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
-		    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
-	    	categoryList.add(catMarisc);*/
-	    	
-	    	categoryListView.setItems(categoryList);
-	    	stockListView.setItems(stockList);
-		
+	    	categoryListView.setItems(olCategory);
+	    	stockListView.setItems(olStock);
+	    	con.desconnectarDB();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	   
     }
+    
+	int idSelected;
+	int qtatSelected;
+	StockCategory cat;
     
     /**
      * Funció que es crida al iniciar la escena
@@ -92,19 +88,65 @@ public class StockController {
 		new Thread() {
 			@Override
 			public void run() {
-				loadList();
+				loadData();
 			}
 		}.start();
 		
+		tfQtat.setVisible(false);
+
+		//Mostrar segona listview depenent de categoria
 		categoryListView.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
-			System.out.println("\n"+nv);
-			List<StockItem> productes = ((StockCategory)nv).productesList;
-			stockList.clear();
-			for(StockItem item : productes) {
-				System.out.println(item);
-				stockList.add(item);
-			}
+			cat = nv;
+			loadCategory(cat);
         });
+
+		//Mostrar quadre de quantitat depenent de producte
+		stockListView.getSelectionModel().selectedItemProperty().addListener((obs,ov,nv)->{
+			if(nv != null) {
+				System.out.println("\n"+nv);				
+				idSelected = nv.id;
+				tfQtat.setText(String.valueOf(nv.quantitat));
+			}
+			tfQtat.setVisible(true);
 			
+        });
+		
+    	ConnexioBD con = new ConnexioBD();
+
+		tfQtat.setOnKeyReleased(e -> {
+			if (e.getCode() == KeyCode.ENTER) {
+				int id = idSelected;
+				int qtat = Integer.parseInt(tfQtat.getText());
+				con.execDB("update plats set quantitat = "+qtat+" where id = "+id);
+				updateCategory(cat);
+				loadCategory(cat);
+			}
+		});
+			
+	}
+
+	private void updateCategory(StockCategory cat) {
+    	ConnexioBD con = new ConnexioBD();
+    	ResultSet rs = con.queryDB("select * from plats p inner join categories c on id_cat = c.id and c.cat = '"+cat.nom+"'");
+    	try {
+    		cat.productesList.clear();
+			while(rs.next()) {
+				cat.productesList.add(new StockItem(rs.getInt("id"), rs.getString("nom"), rs.getInt("quantitat")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void loadCategory(StockCategory cat) {
+		System.out.println("\n"+cat);
+		List<StockItem> productes = ((StockCategory)cat).productesList;
+		
+		olStock.clear();
+		for(StockItem item : productes) {
+			System.out.println(item);
+			olStock.add(item);
+		}
+		tfQtat.setVisible(false);
 	}
 }

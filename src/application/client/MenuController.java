@@ -211,7 +211,7 @@ public class MenuController {
 
 		try {
 			conDB = new ConnexioBD();
-			conDB.updateDB(sQuery);
+			conDB.execDB(sQuery);
 		} catch (Exception e) {
 			e.getStackTrace();
 		} finally {

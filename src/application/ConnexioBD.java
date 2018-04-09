@@ -49,9 +49,9 @@ public class ConnexioBD {
 	 * @param sQuery
 	 * @param db
 	 */
-	public void updateDB(String sQuery) {
+	public void execDB(String sQuery) {
 		try {
-			con.createStatement().executeUpdate(sQuery);
+			con.createStatement().execute(sQuery);
 			//db.conn.commit();
 		} catch (Exception e) {
 		}

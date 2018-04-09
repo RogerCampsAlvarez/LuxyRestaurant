@@ -32,6 +32,20 @@
       <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefHeight="54.0" prefWidth="80.0" text="Back" GridPane.rowIndex="8" />
       <ListView fx:id="categoryListView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" GridPane.rowSpan="5" />
       <ListView fx:id="stockListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="5" />
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="7.0" text="Quantitat:" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TextField fx:id="tfQtat" layoutY="-1.0" prefHeight="34.0" prefWidth="199.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
