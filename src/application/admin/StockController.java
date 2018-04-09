@@ -3,6 +3,7 @@ package application.admin;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import application.ConnexioBD;
@@ -44,36 +45,44 @@ public class StockController {
     void loadList() {
     	//TODO load from DB
     	ConnexioBD con = new ConnexioBD();
-    	ResultSet rs = con.queryDB("select * from plats");
     	
-    	StockCategory catCarnics = new StockCategory("Productes Càrnics");
-			try {
-				int index=0;
-				while (rs.next()) {
-					catCarnics.productesList.add(new StockItem(index++, rs.getString("nom"), 4));
-				}
+    	ArrayList<StockCategory> categories = new ArrayList<>();
+    	//StockCategory[] categories = new StockCategory[100];
+    	ResultSet rs = con.queryDB("select * from categories");
+    	try {
+			while (rs.next()) {
+				categories.add(new StockCategory(rs.getString("cat")));
+			}
+    	
+			//StockCategory catCarnics = new StockCategory("Productes Càrnics");
+    	
+			rs = con.queryDB("select * from plats");
+		
+			while (rs.next()) {
+				categories.get(rs.getInt("id_cat")-1).productesList.add(new StockItem(rs.getInt("id"), rs.getString("nom"), rs.getInt("quantitat")));
+			}
+		
+			for(int i=0;i<categories.size();i++) {
+		    	categoryList.add(categories.get(i));
+			}
 			
-		    	/*catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
-		    	catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
-		    	catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
-		    	catCarnics.productesList.add(new StockItem(4, "Bistec", 6));*/
-	    	categoryList.add(catCarnics);
-	    	
+	    	/*catCarnics.productesList.add(new StockItem(1, "Filet de Porc", 4));
+	    		catCarnics.productesList.add(new StockItem(2, "Filet de Vedella", 3));
+	    		catCarnics.productesList.add(new StockItem(3, "Hamburguesa", 5));
+	    		catCarnics.productesList.add(new StockItem(4, "Bistec", 6));
 	    	StockCategory catMarisc = new StockCategory("Marisc");
 		    	catMarisc.productesList.add(new StockItem(1, "Gambetes de Palamós", 3));
 		    	catMarisc.productesList.add(new StockItem(2, "Llangosta", 30));
 		    	catMarisc.productesList.add(new StockItem(3, "Calamar", 8));
-	    	categoryList.add(catMarisc);
+	    	categoryList.add(catMarisc);*/
 	    	
 	    	categoryListView.setItems(categoryList);
-			stockListView.setItems(stockList);
-			
-			} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	    	stockListView.setItems(stockList);
+		
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	    				
-			
+	   
     }
     
     /**
