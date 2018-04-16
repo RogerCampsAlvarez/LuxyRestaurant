@@ -21,6 +21,8 @@ public class SplashController {
 	Stage splashStage;
 	Stage loadStage = new Stage();
 	Stage nextStage = new Stage();
+	
+	static final int SPLASH_FADE_TIME = 800;
 
 	public void initialize(Stage primaryStage) {
 		try {
@@ -54,25 +56,20 @@ public class SplashController {
 			StackPane pane = FXMLLoader.load(getClass().getResource(("Splash.fxml")));
 
 			// Mostra Spalsh
-			FadeTransition fadeIn = new FadeTransition(Duration.millis(500), pane);
+			FadeTransition fadeIn = new FadeTransition(Duration.millis(SPLASH_FADE_TIME), pane);
 			fadeIn.setFromValue(0);
 			fadeIn.setToValue(1);
 			fadeIn.setCycleCount(1);
 
 			// Amaga Splash
-			FadeTransition fadeOut = new FadeTransition(Duration.seconds(1), pane);
+			FadeTransition fadeOut = new FadeTransition(Duration.millis(SPLASH_FADE_TIME), pane);
 			fadeOut.setFromValue(1);
 			fadeOut.setToValue(0);
 			fadeOut.setCycleCount(1);
 
 			fadeIn.play();
-			//new Thread() {
-				//@Override
-			//	public void run() {
-					loadProgressBar();
-			//	}
-			//}.start();
-			
+			loadProgressBar();
+
 			fadeIn.setOnFinished(e -> {
 				fadeOut.play();
 			});
@@ -81,21 +78,18 @@ public class SplashController {
 				try {
 					loadStage.close();
 					splashStage.close();
-					Parent parent = FXMLLoader.load(getClass().getResource("Main.fxml"));
 
-					nextStage.setTitle("LuxyRestaurant");
-					nextStage.setScene(new Scene(parent));
-					nextStage.initStyle(StageStyle.DECORATED);
-					nextStage.show();
+					Pane root = FXMLLoader.load(getClass().getResource("/application/Main.fxml"));
+					Scene scene = new Scene(root);
 
-					/*MainController mcontroller = new MainController();
-					mcontroller.initialize(splashStage);*/
+					Util.openGUI(scene, nextStage, StageStyle.DECORATED, Strings.TITLE_MAIN);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}
 			});
 
 		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -124,7 +118,7 @@ public class SplashController {
 					
 					//Espera 5ms entre cada columna
 					try {
-						Thread.sleep(5);
+						Thread.sleep(SPLASH_FADE_TIME / w * 2);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
