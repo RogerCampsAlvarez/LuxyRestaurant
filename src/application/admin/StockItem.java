@@ -19,11 +19,13 @@ public class StockItem {
 }
 
 class StockCategory {
+	int id;
 	String nom;
 	ArrayList<StockItem> productesList = new ArrayList<StockItem>();
 	
-	StockCategory(String nom){
+	StockCategory(int id, String nom){
 		this.nom = nom;
+		this.id = id;
 	}
 	
 	public String toString() {

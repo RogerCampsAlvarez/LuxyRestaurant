@@ -51,9 +51,8 @@ public class TaulesController {
 
 		olTaulesList.add(t1);
 		olTaulesList.add(t2);
-		// taulesTableView.setItems(olTaulesList);
 
-		// taulesTableView.setEditable(true);
+		//Linies necessaries per poder inserir valors a les cel·les
 		tcNom.setCellValueFactory(new PropertyValueFactory<Taula, String>("nom"));
 		tcCapacitat.setCellValueFactory(new PropertyValueFactory<Taula, String>("capacitat"));
 

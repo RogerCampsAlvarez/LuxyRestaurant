@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class StockController {
 	
 	@FXML
-    private Button btnBack;
+    private Button btnBack, btnAddProd;
 
 	@FXML
 	private ListView<StockCategory> categoryListView;
@@ -34,9 +34,9 @@ public class StockController {
 	private ListView<StockItem> stockListView;
 	
 	@FXML
-	private TextField tfQtat;
+	private TextField tfQtat, tfAddCat;
 	
-	ObservableList<StockCategory> olCategory = FXCollections.observableArrayList();
+	static ObservableList<StockCategory> olCategory = FXCollections.observableArrayList();
 	ObservableList<StockItem> olStock = FXCollections.observableArrayList();
 	
     @FXML
@@ -47,16 +47,25 @@ public class StockController {
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
     }
     
+    @FXML
+    void btnAddProd(ActionEvent event) throws IOException {
+    	Pane root = FXMLLoader.load(getClass().getResource("/application/admin/NewProducte.fxml"));
+		Scene scene = new Scene(root);
+	    Stage stage = (Stage) btnAddProd.getScene().getWindow();
+		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
+	}
+    
     /**
      * Carrega les dades de la DB a les llistes
      */
     void loadData() {
     	ConnexioBD con = new ConnexioBD();
-    	
+    	olCategory.clear();
+    	olStock.clear();
     	ResultSet rs = con.queryDB("select * from categories");
     	try {
 			while (rs.next()) { //Carrega les categories
-				StockCategory category = new StockCategory(rs.getString("cat"));
+				StockCategory category = new StockCategory(rs.getInt("id"),rs.getString("cat"));
 		    	olCategory.add(category);
 
 			}    	
@@ -119,8 +128,15 @@ public class StockController {
 				int id = idSelected;
 				int qtat = Integer.parseInt(tfQtat.getText());
 				con.execDB("update plats set quantitat = "+qtat+" where id = "+id);
-				updateCategory(cat);
 				loadCategory(cat);
+			}
+		});
+		
+		tfAddCat.setOnKeyReleased(e -> {
+			if (e.getCode() == KeyCode.ENTER) {
+				if(!tfAddCat.getText().equals(""))
+					con.execDB("insert into categories values(DEFAULT,'"+tfAddCat.getText()+"')");
+				loadData();
 			}
 		});
 	}

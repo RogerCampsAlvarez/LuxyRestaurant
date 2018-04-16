@@ -3,7 +3,6 @@ package application;
 import java.io.IOException;
 
 import javafx.animation.FadeTransition;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ public class SplashController {
 	Stage loadStage = new Stage();
 	Stage nextStage = new Stage();
 	
-	static final int SPLASH_FADE_TIME = 800;
+	static final int SPLASH_FADE_TIME = 400;
 
 	public void initialize(Stage primaryStage) {
 		try {
