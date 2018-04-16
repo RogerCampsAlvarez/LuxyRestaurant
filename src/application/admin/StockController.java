@@ -47,27 +47,26 @@ public class StockController {
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
     }
     
+    /**
+     * Carrega les dades de la DB a les llistes
+     */
     void loadData() {
-    	//TODO load from DB
     	ConnexioBD con = new ConnexioBD();
     	
-    	ArrayList<StockCategory> categories = new ArrayList<>();
-    	//StockCategory[] categories = new StockCategory[100];
     	ResultSet rs = con.queryDB("select * from categories");
     	try {
-			while (rs.next()) {
-				categories.add(new StockCategory(rs.getString("cat")));
+			while (rs.next()) { //Carrega les categories
+				StockCategory category = new StockCategory(rs.getString("cat"));
+		    	olCategory.add(category);
+
 			}    	
 			rs = con.queryDB("select * from plats");
 		
-			while (rs.next()) {
-				categories.get(rs.getInt("id_cat")-1).productesList.add(new StockItem(rs.getInt("id"), rs.getString("nom"), rs.getInt("quantitat")));
+			while (rs.next()) { //Carrega els productes per categoria
+				olCategory.get(rs.getInt("id_cat")-1).productesList.add(new StockItem(rs.getInt("id"), rs.getString("nom"), rs.getInt("quantitat")));
 			}
-		
-			for(int i=0;i<categories.size();i++) {
-		    	olCategory.add(categories.get(i));
-			}
-			
+
+			//Carreguem les ListView
 	    	categoryListView.setItems(olCategory);
 	    	stockListView.setItems(olStock);
 	    	con.desconnectarDB();
@@ -85,6 +84,7 @@ public class StockController {
      * Funció que es crida al iniciar la escena
      */
 	public void initialize() {
+		//Carreguem les dades amb un thread per que no s'aturi el fil principal mentres es consulta
 		new Thread() {
 			@Override
 			public void run() {
@@ -113,6 +113,7 @@ public class StockController {
 		
     	ConnexioBD con = new ConnexioBD();
 
+    	//Quan fem enter actualitzem la BD amb la quantitat
 		tfQtat.setOnKeyReleased(e -> {
 			if (e.getCode() == KeyCode.ENTER) {
 				int id = idSelected;
@@ -122,11 +123,15 @@ public class StockController {
 				loadCategory(cat);
 			}
 		});
-			
 	}
 
+	/**
+	 * Actualitza la categoria
+	 * @param cat
+	 */
 	private void updateCategory(StockCategory cat) {
     	ConnexioBD con = new ConnexioBD();
+    	//Fa un select dels productes de la categoria i els fica a la seva llista
     	ResultSet rs = con.queryDB("select * from plats p inner join categories c on id_cat = c.id and c.cat = '"+cat.nom+"'");
     	try {
     		cat.productesList.clear();
@@ -138,12 +143,15 @@ public class StockController {
 		}
 	}
 	
+	/**
+	 * Carrega la categoria
+	 * @param cat
+	 */
 	private void loadCategory(StockCategory cat) {
 		System.out.println("\n"+cat);
-		List<StockItem> productes = ((StockCategory)cat).productesList;
 		
 		olStock.clear();
-		for(StockItem item : productes) {
+		for(StockItem item : cat.productesList) {
 			System.out.println(item);
 			olStock.add(item);
 		}
