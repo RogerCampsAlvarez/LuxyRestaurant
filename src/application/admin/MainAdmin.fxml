@@ -50,15 +50,14 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <Button fx:id="btnStock" mnemonicParsing="false" onAction="#cmdStock" prefHeight="63.0" prefWidth="606.0" text="Gestionar Stock" GridPane.rowIndex="2" />
-            <Button fx:id="btnTaules" mnemonicParsing="false" onAction="#cmdTaules" prefHeight="62.0" prefWidth="609.0" text="Gestionar Taules" GridPane.rowIndex="3" />
+            <Button fx:id="btnStock" mnemonicParsing="false" onAction="#cmdStock" prefHeight="65.0" prefWidth="616.0" text="Gestionar Stock" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <Button fx:id="btnTaules" mnemonicParsing="false" onAction="#cmdTaules" prefHeight="75.0" prefWidth="301.0" text="Gestionar Taules" GridPane.rowIndex="3" />
             <Button fx:id="btnBack" mnemonicParsing="false" onAction="#cmdBack" prefHeight="62.0" prefWidth="609.0" text="Back" GridPane.rowIndex="5" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="600.0" text="Admin" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="1">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnBegudes" mnemonicParsing="false" prefHeight="74.0" prefWidth="352.0" text="Gestionar Begudes" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Button fx:id="btnCuina" mnemonicParsing="false" prefHeight="102.0" prefWidth="474.0" text="Gestionar Cuina" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
          <BorderPane.margin>

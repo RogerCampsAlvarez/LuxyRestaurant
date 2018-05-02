@@ -12,11 +12,6 @@ public class ComandaClient {
 		// TODO Auto-generated constructor stub
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-	
 	/**
 	 * COMPROVA QUE NO HI HA CAP CAMP BUIT
 	 * @return

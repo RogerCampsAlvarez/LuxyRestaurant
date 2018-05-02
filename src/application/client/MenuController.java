@@ -67,7 +67,7 @@ public class MenuController {
 		obsListComanda.clear();
 		iPlat = 0;
 
-		obternirPlats("primer");
+		obternirPlats("Primer");
 
 		lvPlats.setItems(obsListComanda);
 		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -86,7 +86,7 @@ public class MenuController {
 		btnDemanar.setVisible(false);
 		iPlat = 1;
 
-		obternirPlats("segon");
+		obternirPlats("Segon");
 
 		lvPlats.setItems(obsListComanda);
 		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -105,7 +105,7 @@ public class MenuController {
 		btnDemanar.setVisible(false);
 		iPlat = 2;
 
-		obternirPlats("postres");
+		obternirPlats("Postres");
 
 		lvPlats.setItems(obsListComanda);
 		lvPlats.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -174,7 +174,6 @@ public class MenuController {
 	}
 
 	private void obtenirBeguda(boolean bCafe) {
-		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT nom FROM begudes WHERE quantitat > 0 AND cafe = " + bCafe + ";";
 
 		try {

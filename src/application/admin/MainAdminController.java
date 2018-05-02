@@ -27,8 +27,6 @@ public class MainAdminController {
 	@FXML 
 	private Button btnCuina;
 	@FXML
-	private Button btnBegudes;
-	@FXML
 	private Button btnBack;
 	@FXML
 	private MenuItem mnClose;

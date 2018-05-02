@@ -37,7 +37,7 @@ public class Cuina {
 	
 	
 	ConnexioBD conn = new ConnexioBD();
-	Statement stmt = conn.GetStatement();
+	Statement stmt = conn.getStatement();
 	
 	private final ObservableList<Plat> data
     = FXCollections.observableArrayList(

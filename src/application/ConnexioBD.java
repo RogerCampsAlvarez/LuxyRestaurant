@@ -63,7 +63,7 @@ public class ConnexioBD {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Statement GetStatement(){
+	public Statement getStatement(){
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();

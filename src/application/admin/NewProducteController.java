@@ -28,7 +28,6 @@ public class NewProducteController {
 
 	@FXML
 	private Button btnBack, btnAddProd;
-	
 	@FXML
 	private TextField tfNom, tfQtat, tfPreu;
 	@FXML
@@ -42,10 +41,10 @@ public class NewProducteController {
 	
 	@FXML
 	void btnBack(ActionEvent event) throws IOException {
-		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
+		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Stock.fxml"));
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnBack.getScene().getWindow();
-		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
+		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_STOCK);
 	}
 	
 	@FXML
