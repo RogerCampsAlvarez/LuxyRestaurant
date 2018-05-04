@@ -109,17 +109,12 @@ public class Cuina {
 		}
 		
 		private void load() throws ClassNotFoundException, SQLException {
-			Class.forName("org.postgresql.Driver");
-			Connection connection = null;
-			connection = DriverManager.getConnection(
-			   "jdbc:postgresql://localhost:5432/restaurant", "postgres", "postgres");
-			
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM comandes WHERE acavat=false ORDER BY id;");
+			ConnexioBD con = new ConnexioBD();
+			ResultSet rs = con.queryDB("SELECT * FROM comandes WHERE acavat=false ORDER BY id;");
 			
 			//Afegir al arraylist tots els resultats del query
 			while(rs.next()) {
-				Comanda x = new Comanda(connection,rs.getInt("id"),rs.getInt("taula"),rs.getInt("primer"),rs.getInt("segon"),rs.getInt("postre"));
+				Comanda x = new Comanda(connection,rs.getInt("id"),rs.getInt("taula"),rs.getInt("Primer"),rs.getInt("Segon"),rs.getInt("Postre"));
 				al.add(x);
 			}
 			

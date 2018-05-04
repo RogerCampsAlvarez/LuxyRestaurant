@@ -48,8 +48,6 @@ public class TaulesController {
 	}
 
 	private void loadTaules() {
-		// TODO Load from DB
-
 		try {
 			ResultSet rs = con.queryDB("select * from taules order by id asc");
 			
