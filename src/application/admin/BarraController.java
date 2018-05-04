@@ -1,5 +1,7 @@
 package application.admin;
 
+import application.Strings;
+import application.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,7 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,8 @@ public class BarraController {
     private Label hora;
     @FXML
     public TableView<Beguda> taula_begudes;
+    @FXML
+    public Button btnBack;
 
     List<Beguda> llista = new ArrayList<Beguda>();
     ObservableList<Beguda> llistaBegudes = FXCollections.observableList(llista);
@@ -54,6 +61,14 @@ public class BarraController {
         nom.setText(taula_begudes.getSelectionModel().getSelectedItem().getNom());
         taula.setText(taula_begudes.getSelectionModel().getSelectedItem().getTaula());
         hora.setText(taula_begudes.getSelectionModel().getSelectedItem().getHora());
+    }
+
+    @FXML
+    void btnBack(ActionEvent event) throws IOException {
+        Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) btnBack.getScene().getWindow();
+        Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
     }
 
 
