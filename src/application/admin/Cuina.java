@@ -78,7 +78,7 @@ public class Cuina {
 	public void btnRecuperarUltim(ActionEvent event) throws SQLException, ClassNotFoundException {
 		conDB = new ConnexioBD();
 		conDB.execDB("UPDATE comandes SET acabat_menjar=false WHERE id="+idSeleccionada+";");
-		al.clear();
+		al.clear();	
 		load();
 	}
 
