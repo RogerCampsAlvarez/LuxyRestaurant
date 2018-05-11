@@ -35,27 +35,27 @@
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button fx:id="btnPrimerPlat" mnemonicParsing="false" onAction="#btnPrimerPlat" prefHeight="50.0" prefWidth="175.0" text="PRIMER PLAT" GridPane.rowIndex="2">
+      <Button fx:id="btnPrimerPlat" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnPrimerPlat" text="PRIMER PLAT" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnSegonPlat" mnemonicParsing="false" onAction="#btnSegonPlat" prefHeight="50.0" prefWidth="175.0" text="SEGON PLAT" GridPane.rowIndex="3">
+      <Button fx:id="btnSegonPlat" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnSegonPlat" text="SEGON PLAT" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnPostres" mnemonicParsing="false" onAction="#btnPostres" prefHeight="50.0" prefWidth="175.0" text="POSTRES" GridPane.rowIndex="4">
+      <Button fx:id="btnPostres" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnPostres" text="POSTRES" GridPane.rowIndex="4" GridPane.valignment="TOP">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnCafes" mnemonicParsing="false" onAction="#btnCafes" prefHeight="50.0" prefWidth="175.0" text="CAFÈS" GridPane.rowIndex="5">
+      <Button fx:id="btnCafes" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnCafes" text="CAFÈS" GridPane.rowIndex="5" GridPane.valignment="TOP">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
-      <Button fx:id="btnBegudes" mnemonicParsing="false" onAction="#btnBeguda" prefHeight="50.0" prefWidth="175.0" text="BEGUDES" GridPane.rowIndex="6">
+      <Button fx:id="btnBegudes" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#btnBeguda" text="BEGUDES" GridPane.rowIndex="6" GridPane.valignment="TOP">
          <font>
             <Font size="24.0" />
          </font>
@@ -75,6 +75,31 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Label fx:id="lblPrimerPlat" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblSegonPlat" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPostres" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCafe" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBeguda" alignment="CENTER" maxWidth="1.7976931348623157E308" textAlignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

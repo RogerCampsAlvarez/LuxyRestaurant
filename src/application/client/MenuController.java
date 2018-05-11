@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -33,6 +34,12 @@ public class MenuController {
 	@FXML private Button btnDemanar;
 	@FXML private Text txtPlat;
 	@FXML private Text txtDescripcio;
+	
+	@FXML private Label lblPrimerPlat;
+	@FXML private Label lblSegonPlat;
+	@FXML private Label lblPostres;
+	@FXML private Label lblCafe;
+	@FXML private Label lblBeguda;
 
 	private ObservableList<String> obsListComanda = FXCollections.observableArrayList();
 
@@ -41,7 +48,7 @@ public class MenuController {
 	private String sCafe;
 	private int iPlat = 0;
 	
-	ConnexioBD conDB;
+	private ConnexioBD conDB;
 
 
 	/**
@@ -120,7 +127,7 @@ public class MenuController {
 
 	private void obternirPlats(String sTipus) {
 		//VariablesBaseDades vBD = new VariablesBaseDades();
-		String sQuery = "SELECT nom FROM plats WHERE  quantitat > 0 AND tipus = '" + sTipus + "';";
+		String sQuery = "SELECT nom FROM plats WHERE quantitat > 0 AND tipus = '" + sTipus + "';";
 		try {
 			conDB = new ConnexioBD();
 			ResultSet rs = conDB.queryDB(sQuery);
@@ -149,6 +156,7 @@ public class MenuController {
 			@Override
 			public void handle(MouseEvent event) {
 				sCafe = (String) lvPlats.getSelectionModel().getSelectedItem();
+
 				platSeleccionat();
 			}
 		});
@@ -168,6 +176,7 @@ public class MenuController {
 			@Override
 			public void handle(MouseEvent event) {
 				sBeguda = (String) lvPlats.getSelectionModel().getSelectedItem();
+
 				platSeleccionat();
 			}
 		});
@@ -241,7 +250,6 @@ public class MenuController {
 	private void platSeleccionat() {
 
 		txtPlat.setText(sPlat);
-		//VariablesBaseDades vBD = new VariablesBaseDades();
 		String sQuery = "SELECT descripcio FROM plats WHERE nom = '" + sPlat + "';";
 
 		try {
@@ -266,18 +274,23 @@ public class MenuController {
 		switch (iPlat) {
 			case 0:// Primr plat
 				MainClientController.comClient.setsPrimerPlat(sPlat);
+				lblPrimerPlat.setText( sPlat );
 				break;
 			case 1:// Segon Plat
 				MainClientController.comClient.setsSegonPlat(sPlat);
+				lblSegonPlat.setText( sPlat );
 				break;
 			case 2:// Postres
 				MainClientController.comClient.setsPostres(sPlat);
+				lblPostres.setText( sPlat );
 				break;
 			case 3:// Beguda
 				MainClientController.comClient.setsBeguda(sBeguda);
+				lblBeguda.setText( sBeguda );
 				break;
 			case 4:// Cafes
 				MainClientController.comClient.setsCafe(sCafe);
+				lblCafe.setText( sCafe );
 				break;
 			default:
 				break;
