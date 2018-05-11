@@ -76,6 +76,9 @@ public class Cuina {
 
 	@FXML
 	public void btnRecuperarUltim(ActionEvent event) throws SQLException, ClassNotFoundException {
+		ConnexioBD c = new ConnexioBD();
+		Statement stmt = c.getStatement();
+		stmt.executeUpdate("UPDATE comandes SET acavat=false WHERE id="+idSeleccionada+";");
 		al.clear();
 		load();
 	}
