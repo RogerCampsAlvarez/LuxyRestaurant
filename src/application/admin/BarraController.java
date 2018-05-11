@@ -1,5 +1,6 @@
 package application.admin;
 
+import application.ConnexioBD;
 import application.Strings;
 import application.Util;
 import javafx.collections.FXCollections;
@@ -28,12 +29,12 @@ public class BarraController {
     @FXML
     private Label hora;
     @FXML
-    public TableView<Beguda> taula_begudes;
+    private TableView<Beguda> taula_begudes;
     @FXML
-    public Button btnBack;
+    private Button btnBack;
 
-    List<Beguda> llista = new ArrayList<Beguda>();
-    ObservableList<Beguda> llistaBegudes = FXCollections.observableList(llista);
+    private List<Beguda> llista = new ArrayList<Beguda>();
+    private ObservableList<Beguda> llistaBegudes = FXCollections.observableList(llista);
     Parent root;
 
 
@@ -47,24 +48,24 @@ public class BarraController {
     }
 
     @FXML
-    public void crearEntrada(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
+    private void crearEntrada(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
         buscarBD();
     }
 
     @FXML
-    public void completarBeguda(ActionEvent actionEvent) {
+    private void completarBeguda(ActionEvent actionEvent) {
         taula_begudes.getItems().remove(taula_begudes.getSelectionModel().getSelectedItem());
     }
 
     @FXML
-    public void clickItem(MouseEvent event) {
+    private void clickItem(MouseEvent event) {
         nom.setText(taula_begudes.getSelectionModel().getSelectedItem().getNom());
         taula.setText(taula_begudes.getSelectionModel().getSelectedItem().getTaula());
         hora.setText(taula_begudes.getSelectionModel().getSelectedItem().getHora());
     }
 
     @FXML
-    void btnBack(ActionEvent event) throws IOException {
+    private void btnBack(ActionEvent event) throws IOException {
         Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) btnBack.getScene().getWindow();
@@ -72,7 +73,7 @@ public class BarraController {
     }
 
 
-    public Statement connexio() {
+    private Statement connexio() {
         Statement stmt = null;
 
         try {
@@ -87,8 +88,9 @@ public class BarraController {
     }
 
 
-    public void buscarBD() throws ClassNotFoundException, SQLException {
-        Statement stmt = connexio();
+    private void buscarBD() throws ClassNotFoundException, SQLException {
+        //Statement stmt = connexio();
+        ConnexioBD con = new ConnexioBD();
         int id;
         int id_taula;
         int id_beguda;
@@ -99,7 +101,8 @@ public class BarraController {
 
         System.out.println("Buscant a la base de dades...");
         try {
-            ResultSet rs = stmt.executeQuery("Select * from comandes");
+            //ResultSet rs = stmt.executeQuery("Select * from comandes");
+            ResultSet rs = con.queryDB("Select * from comandes");
             while (rs.next()) {
                 date = new Date();
                 id = rs.getInt("id");
@@ -156,7 +159,7 @@ public class BarraController {
     }
 
 
-    public String buscarBeguda(int id) throws SQLException {
+    private String buscarBeguda(int id) throws SQLException {
         String nom = "";
         ResultSet rs2 = null;
         Statement stmt = connexio();
@@ -177,7 +180,7 @@ public class BarraController {
     }
 
 
-    public String buscarTaula(int id) throws SQLException {
+    private String buscarTaula(int id) throws SQLException {
         String nom = "";
         ResultSet rs2 = null;
         Statement stmt = connexio();

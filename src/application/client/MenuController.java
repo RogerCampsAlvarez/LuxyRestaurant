@@ -40,6 +40,7 @@ public class MenuController {
 	private String sBeguda;
 	private String sCafe;
 	private int iPlat = 0;
+
 	
 	ConnexioBD conDB;
 
