@@ -77,7 +77,7 @@ public class Cuina {
 	@FXML
 	public void btnRecuperarUltim(ActionEvent event) throws SQLException, ClassNotFoundException {
 		conDB = new ConnexioBD();
-		conDB.execDB("UPDATE comandes SET acavat=false WHERE id="+idSeleccionada+";");
+		conDB.execDB("UPDATE comandes SET acabat_menjar=false WHERE id="+idSeleccionada+";");
 		al.clear();
 		load();
 	}
@@ -90,7 +90,7 @@ public class Cuina {
 	private void acabarComanda(String id) throws ClassNotFoundException, SQLException {
 		conDB = new ConnexioBD();
 
-		conDB.execDB("UPDATE comandes SET acavat=true WHERE id="+id+";");
+		conDB.execDB("UPDATE comandes SET acabat_menjar=true WHERE id="+id+";");
 		al.clear();
 		load();
 
@@ -104,7 +104,7 @@ public class Cuina {
 			public void run() {
 				try {
 					conDB = new ConnexioBD();
-					ResultSet rs = conDB.queryDB("SELECT * FROM comandes WHERE acavat=false ORDER BY id;");
+					ResultSet rs = conDB.queryDB("SELECT * FROM comandes WHERE acabat_menjar=false ORDER BY id;");
 
 					//Afegir al arraylist tots els resultats del query
 					while(rs.next()) {
