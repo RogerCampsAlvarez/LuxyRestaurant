@@ -135,7 +135,7 @@ public class StockController {
 		// Mostrar quadre de quantitat depenent de producte
 		stockListView.getSelectionModel().selectedItemProperty().addListener((obs, ov, nv) -> {
 			if (nv != null) {
-				System.out.println("\n" + nv);
+				//System.out.println("\n" + nv);
 				idSelected = nv.id;
 				tfQtat.setText(String.valueOf(nv.quantitat));
 			}
@@ -176,12 +176,9 @@ public class StockController {
 	 * @param cat
 	 */
 	private void loadCategory(StockCategory cat) {
-		System.out.println("\n" + cat);
 
 		olStock.clear();
-		System.out.println("cat: "+cat);
 		for (StockItem item : cat.productesList) {
-			System.out.println("Item: "+item+" cat: "+cat+" "+cat.productesList);
 			olStock.add(item);
 		}
 		tfQtat.setVisible(false);
