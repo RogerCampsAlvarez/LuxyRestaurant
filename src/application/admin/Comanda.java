@@ -13,11 +13,11 @@ public class Comanda {
 	private SimpleIntegerProperty id;
     private SimpleStringProperty taula;
     private SimpleStringProperty primer;
-    //private SimpleIntegerProperty qtatPrimer;
+    private SimpleIntegerProperty qtatPrimer;
     private SimpleStringProperty segon;
-    //private SimpleIntegerProperty qtatSegon;
+    private SimpleIntegerProperty qtatSegon;
     private SimpleStringProperty postre;
-    //private SimpleIntegerProperty qtatPostre;
+    private SimpleIntegerProperty qtatPostre;
     private SimpleStringProperty plat;
     //private int compt = 0;
     boolean bprimer=false;
@@ -41,19 +41,19 @@ public class Comanda {
     	p.next();
 		this.primer = new SimpleStringProperty(p.getString(1));
 		this.plat = new SimpleStringProperty(p.getString(1));
-		//this.qtatPrimer = new SimpleIntegerProperty(p.getInt(2));
+		this.qtatPrimer = new SimpleIntegerProperty(p.getInt(2));
 		
     	p.close();
     	ResultSet s = stmt.executeQuery("SELECT nom,quantitat FROM plats WHERE id="+segon);
     	s.next();
     		this.segon = new SimpleStringProperty(s.getString(1));
-			//this.qtatSegon = new SimpleIntegerProperty(s.getInt(2));
+			this.qtatSegon = new SimpleIntegerProperty(s.getInt(2));
 		
     	s.close();
     	ResultSet po = stmt.executeQuery("SELECT nom,quantitat FROM plats WHERE id="+postre);
     	po.next();
     		this.postre = new SimpleStringProperty(po.getString(1));
-			//this.qtatPostre = new SimpleIntegerProperty(po.getInt(2));
+			this.qtatPostre = new SimpleIntegerProperty(po.getInt(2));
 		
     	po.close();
     	stmt.close();
