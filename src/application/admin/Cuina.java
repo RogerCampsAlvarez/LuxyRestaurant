@@ -37,7 +37,7 @@ public class Cuina {
 		private Button btnBack;
 		ArrayList<Comanda> al = new ArrayList<Comanda>();
 		@FXML
-		private TableView<Comanda> taulesTableView;
+		private TableView<Comanda> tableView;
 		@FXML
 		private TableColumn<Comanda, String> tcId;
 		@FXML
@@ -62,7 +62,7 @@ public class Cuina {
 		public void clickItem(MouseEvent event) throws ClassNotFoundException, SQLException{
 		    if (event.getClickCount() < 2) //Checking double click
 		    {
-		        idSeleccionada = String.valueOf((taulesTableView.getSelectionModel().getSelectedItem().getId()));		       
+		        idSeleccionada = String.valueOf((tableView.getSelectionModel().getSelectedItem().getId()));		       
 		    }else {
 		    	acabarComanda(idSeleccionada);
 		    }
@@ -117,8 +117,12 @@ public class Cuina {
 				Comanda x = new Comanda(connection,rs.getInt("id"),rs.getInt("taula"),rs.getInt("Primer"),rs.getInt("Segon"),rs.getInt("Postre"));
 				al.add(x);
 			}
+			con.desconnectarDB();
 			
-			
+			carregarComandes();
+		}
+		
+		private void carregarComandes() {
 			ObservableList<Comanda> olTaulesList = FXCollections.observableArrayList();
 			//Comanda i = new Comanda(stmt,1,0,0,3,9);
 			//Comanda ii = new Comanda(stmt,0,0,1,2,8);
@@ -134,10 +138,7 @@ public class Cuina {
 			tcPrimer.setCellValueFactory(new PropertyValueFactory<Comanda, String>("primer"));
 			tcSegon.setCellValueFactory(new PropertyValueFactory<Comanda, String>("segon"));
 			tcPostres.setCellValueFactory(new PropertyValueFactory<Comanda, String>("postre"));
-			taulesTableView.getItems().setAll(olTaulesList);
-			
-			
-			
+			tableView.getItems().setAll(olTaulesList);
 		}
 }
 
