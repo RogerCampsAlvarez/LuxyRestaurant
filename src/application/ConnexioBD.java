@@ -23,9 +23,7 @@ public class ConnexioBD {
 			con = DriverManager.getConnection("jdbc:postgresql://192.168.18.171/luxyrestaurant", "postgres", "postgres");
 		} catch (Exception e) {
 			e.getStackTrace();
-		}
-
-		
+		}		
 	}
 
 	/**
@@ -64,7 +62,7 @@ public class ConnexioBD {
 	 * @return
 	 * @throws SQLException
 	 */
-	public Statement getStatement(){
+	/*public Statement getStatement(){
 		Statement stmt = null;
 		try {
 			stmt = con.createStatement();
@@ -75,7 +73,7 @@ public class ConnexioBD {
 		}
 		return stmt;
 		
-	}
+	}*/
 	
 	public Connection getConnection() {
 		return con;
