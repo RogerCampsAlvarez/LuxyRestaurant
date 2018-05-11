@@ -49,7 +49,9 @@ public class Cuina {
 	@FXML
 	private TableColumn<Comanda, String> tcPostres;
 	private String idSeleccionada;
-	
+
+	private ConnexioBD conDB;
+
 	@FXML
 	void btnBack(ActionEvent event) throws IOException {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));
@@ -57,75 +59,64 @@ public class Cuina {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
 	}
-	
+
 	@FXML
 	public void clickItem(MouseEvent event) throws ClassNotFoundException, SQLException{
-	    if (event.getClickCount() < 2) //Checking double click
-	    {
-	        idSeleccionada = String.valueOf((taulesTableView.getSelectionModel().getSelectedItem().getId()));		       
-	    }else {
-	    	acabarComanda(idSeleccionada);
-	    }
+		if (event.getClickCount() < 2) //Checking double click
+		{
+			idSeleccionada = String.valueOf((taulesTableView.getSelectionModel().getSelectedItem().getId()));		       
+		}else {
+			acabarComanda(idSeleccionada);
+		}
 	}
-	
+
 	public void initialize() throws ClassNotFoundException, SQLException {
 		load();
 	}
-	
-	public void Update() throws ClassNotFoundException, SQLException {
-		load();
-	}
-	
+
 	@FXML
 	public void btnRecuperarUltim(ActionEvent event) throws SQLException, ClassNotFoundException {
-		Class.forName("org.postgresql.Driver");
-		Connection connection = null;
-		connection = DriverManager.getConnection(
-		   "jdbc:postgresql://localhost:5432/restaurant", "postgres", "postgres");
-		
-		Statement stmt = connection.createStatement();
-		
-		stmt.executeUpdate("UPDATE comandes SET acavat=false WHERE id="+idSeleccionada+";");
 		al.clear();
-		Update();
+		load();
 	}
-	
+
 	@FXML
 	public void btnAcabarComanda(ActionEvent event) throws ClassNotFoundException, SQLException {
 		acabarComanda(idSeleccionada);
 	}
-	
+
 	private void acabarComanda(String id) throws ClassNotFoundException, SQLException {
-		Class.forName("org.postgresql.Driver");
-		Connection connection = null;
-		connection = DriverManager.getConnection(
-		   "jdbc:postgresql://localhost:5432/restaurant", "postgres", "postgres");
-		
-		Statement stmt = connection.createStatement();
-		
-		stmt.executeUpdate("UPDATE comandes SET acavat=true WHERE id="+id+";");
+		conDB = new ConnexioBD();
+
+		conDB.execDB("UPDATE comandes SET acavat=true WHERE id="+id+";");
 		al.clear();
-		Update();
+		load();
+
+		conDB.desconnectarDB();
 	}
-	
+
 	private void load() throws ClassNotFoundException, SQLException {
-		Class.forName("org.postgresql.Driver");
-		Connection connection = null;
-		connection = DriverManager.getConnection(
-		   "jdbc:postgresql://localhost:5432/restaurant", "postgres", "postgres");
-		
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM comandes WHERE acavat=false ORDER BY id;");
-		
-		//Afegir al arraylist tots els resultats del query
-		while(rs.next()) {
-			Comanda x = new Comanda(connection,rs.getInt("id"),rs.getInt("taula"),rs.getInt("primer"),rs.getInt("segon"),rs.getInt("postre"));
-			al.add(x);
-		}
-		
-		carregarComandes();
+
+		new Thread() {
+			@Override
+			public void run() {
+				try {
+					conDB = new ConnexioBD();
+					ResultSet rs = conDB.queryDB("SELECT * FROM comandes WHERE acavat=false ORDER BY id;");
+
+					//Afegir al arraylist tots els resultats del query
+					while(rs.next()) {
+						al.add(new Comanda(rs.getInt("id"),rs.getInt("taula"),rs.getInt("primer"),rs.getInt("segon"),rs.getInt("postre")));
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
+				carregarComandes();
+			}
+		}.start();
 	}
-	
+
 	/**
 	 * Un cop les comandes estan registrades dins l'arraylist les carreguem totes a l'observablelist i la vista.
 	 */
@@ -133,19 +124,19 @@ public class Cuina {
 		ObservableList<Comanda> olTaulesList = FXCollections.observableArrayList();
 		//Comanda i = new Comanda(stmt,1,0,0,3,9);
 		//Comanda ii = new Comanda(stmt,0,0,1,2,8);
-		
+
 		Iterator<Comanda> iterador = al.iterator();
 		while(iterador.hasNext()) {
 			olTaulesList.add(iterador.next());
 		}
-		
-		
+
+
 		tcId.setCellValueFactory(new PropertyValueFactory<Comanda, String>("id"));
 		tcTaula.setCellValueFactory(new PropertyValueFactory<Comanda, String>("taula"));
 		tcPrimer.setCellValueFactory(new PropertyValueFactory<Comanda, String>("primer"));
 		tcSegon.setCellValueFactory(new PropertyValueFactory<Comanda, String>("segon"));
 		tcPostres.setCellValueFactory(new PropertyValueFactory<Comanda, String>("postre"));
 		taulesTableView.getItems().setAll(olTaulesList);
-		
+
 	}
 }
