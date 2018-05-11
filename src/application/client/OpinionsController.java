@@ -11,27 +11,32 @@ import application.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sun.net.util.IPAddressUtil;
 
 public class OpinionsController {
 
 	@FXML private Button btnBack;
-	
+	@FXML private Button btnEnviar;
 	@FXML private ListView lvPlats;
-	
 	@FXML private ListView lvComentaris;
+	@FXML private ChoiceBox<Integer> cbPuntuacio;
+	@FXML private TextArea tAreaComentari;
 	
 	private ConnexioBD conDB;
 	private ObservableList<String> obsListComanda = FXCollections.observableArrayList();
-	private ObservableList<ValoracioPlats> obsListValoracions = FXCollections.observableArrayList();
+	private ObservableList<String> obsListValoracions = FXCollections.observableArrayList();
 	
 	private String sPlat;
 	
@@ -49,7 +54,13 @@ public class OpinionsController {
 	public void initialize() {
 		
 		omplirLlistaPlats();
+		generarChoiceBox();
 		
+	}
+	
+	private void generarChoiceBox()  {
+		cbPuntuacio.getItems().addAll(0,1,2,3,4,5,6,7,8,9,10);
+	    cbPuntuacio.getSelectionModel().select(10);
 	}
 
 	/**
@@ -60,13 +71,9 @@ public class OpinionsController {
 		lsPlats.add( MainClientController.comClient.getsPrimerPlat() );
 		lsPlats.add( MainClientController.comClient.getsSegonPlat() );
 		lsPlats.add( MainClientController.comClient.getsPostres() );
-		lsPlats.add( MainClientController.comClient.getsBeguda() );
-		lsPlats.add( MainClientController.comClient.getsCafe() );
 		lsPlats.add( MainClientController.comClientExtra.getsPrimerPlat() );
 		lsPlats.add( MainClientController.comClientExtra.getsSegonPlat() );
 		lsPlats.add( MainClientController.comClientExtra.getsPostres() );
-		lsPlats.add( MainClientController.comClientExtra.getsBeguda() );
-		lsPlats.add( MainClientController.comClientExtra.getsCafe() );
 		
 		for( int i = 0; i < lsPlats.size(); i++ ) {
 			if ( !lsPlats.get(i).equals( "") ) {
@@ -88,6 +95,7 @@ public class OpinionsController {
 	}
 	
 	private void cercarValoracions() {
+		obsListValoracions.clear();
 		
 		String sQuery = "SELECT opinio, valoracio FROM opinio_plat WHERE id_plat = (SELECT id FROM plats WHERE nom = '" + sPlat + "');";
 
@@ -96,7 +104,7 @@ public class OpinionsController {
 			ResultSet rs = conDB.queryDB(sQuery);
 
 			while (rs.next()) {
-				obsListValoracions.add( new ValoracioPlats(rs.getString("opinio"), rs.getDouble("valoracio")));
+				obsListValoracions.add(rs.getString("opinio") + "\n\t -> " + rs.getInt("valoracio") );
 			}
 		} catch (Exception e) {
 			e.getStackTrace();
@@ -106,6 +114,28 @@ public class OpinionsController {
 		
 		lvComentaris.setItems(obsListValoracions);
 		
+	}
+	
+	@FXML
+	void onClickEnviar( ActionEvent ae ) {
+		String sOpinio = tAreaComentari.getText();
+		int iPuntuacio = cbPuntuacio.getValue();
+		
+		String sQuery = "INSERT INTO public.opinio_plat( id_plat, opinio, valoracio) "
+				+ "VALUES ( ( SELECT id FROM plats WHERE nom = '" + sPlat + "'), '" + sOpinio + "', " + iPuntuacio + ");";
+		
+		try {
+			
+			conDB = new ConnexioBD();
+			conDB.execDB(sQuery);
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			conDB.desconnectarDB();
+		}
 	}
 	
 }
