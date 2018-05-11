@@ -129,6 +129,8 @@ public class OpinionsController {
 			conDB = new ConnexioBD();
 			conDB.execDB(sQuery);
 			
+			suprimirPlatOpinat();
+			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -136,6 +138,22 @@ public class OpinionsController {
 		} finally {
 			conDB.desconnectarDB();
 		}
+	}
+	
+	private void suprimirPlatOpinat() {
+		
+		boolean bEliminar = true;
+		
+		for( int i = 0; i < obsListComanda.size(); i++ ) {
+			
+			if (bEliminar && obsListComanda.get( i ).equals( sPlat )) {
+				obsListComanda.remove( i );
+			}
+			
+		}
+		
+		lvComentaris.setItems(obsListValoracions);
+		
 	}
 	
 }
