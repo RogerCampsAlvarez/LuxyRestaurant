@@ -75,6 +75,11 @@ public class ConnexioBD {
 		return stmt;
 		
 	}
+	
+	public Connection getConnection() {
+		return con;
+		
+	}
 	/**
 	 * DESCONEXIÓ BASE DE DADES
 	 * 

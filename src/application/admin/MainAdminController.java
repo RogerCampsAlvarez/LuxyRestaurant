@@ -27,6 +27,8 @@ public class MainAdminController {
 	@FXML 
 	private Button btnCuina;
 	@FXML
+	private Button btnBarra;
+	@FXML
 	private Button btnBack;
 	@FXML
 	private MenuItem mnClose;
@@ -55,6 +57,14 @@ public class MainAdminController {
 		Scene scene = new Scene(root);
 		Stage stage = (Stage) btnCuina.getScene().getWindow();
 		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_CUINA);
+	}
+
+	@FXML
+	void cmdBarra(ActionEvent event) throws Exception {
+		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/Barra.fxml"));
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) btnBarra.getScene().getWindow();
+		Util.openGUI(scene, stage, Strings.TITLE_ADMIN_BARRA);
 	}
 
 	@FXML
