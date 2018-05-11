@@ -36,6 +36,7 @@ public class BarraController {
     private List<Beguda> llista = new ArrayList<Beguda>();
     private ObservableList<Beguda> llistaBegudes = FXCollections.observableList(llista);
     Parent root;
+    ConnexioBD con = new ConnexioBD();
 
 
     public void initialize(Stage primaryStage) throws Exception {
@@ -72,7 +73,7 @@ public class BarraController {
         Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
     }
 
-
+    /*
     private Statement connexio() {
         Statement stmt = null;
 
@@ -86,11 +87,11 @@ public class BarraController {
 
         return stmt;
     }
+    */
 
 
     private void buscarBD() throws ClassNotFoundException, SQLException {
         //Statement stmt = connexio();
-        ConnexioBD con = new ConnexioBD();
         int id;
         int id_taula;
         int id_beguda;
@@ -102,7 +103,7 @@ public class BarraController {
         System.out.println("Buscant a la base de dades...");
         try {
             //ResultSet rs = stmt.executeQuery("Select * from comandes");
-            ResultSet rs = con.queryDB("Select * from comandes");
+            ResultSet rs = con.queryDB("Select * from comandes where acabat_beguda = false;");
             while (rs.next()) {
                 date = new Date();
                 id = rs.getInt("id");
@@ -110,6 +111,7 @@ public class BarraController {
                 id_beguda = rs.getInt("beguda");
                 beguda = buscarBeguda(id_beguda);
                 taula = buscarTaula(id_taula);
+                con.execDB("update comandes set acabat_beguda = true where id = " + id + ";");
                 //borrarLinea(id);
 
                 pujarATableview(taula, beguda, date);
@@ -120,7 +122,7 @@ public class BarraController {
         System.out.println("Ha acavat de buscar a la base de dades");
     }
 
-
+    /*
     private void borrarLinea(int id) throws SQLException {
         Statement stmt = connexio();
 
@@ -132,6 +134,7 @@ public class BarraController {
             stmt.close();
         }
     }
+    */
 
 
     private void pujarATableview(String taula, String beguda, Date Dhora) {
@@ -162,10 +165,9 @@ public class BarraController {
     private String buscarBeguda(int id) throws SQLException {
         String nom = "";
         ResultSet rs2 = null;
-        Statement stmt = connexio();
 
         try {
-            rs2 = stmt.executeQuery("select nom from begudes where id = " + id);
+            rs2 = con.queryDB("select nom from begudes where id = " + id);
             while (rs2.next()) {
                 nom = rs2.getString("nom");
             }
@@ -173,7 +175,6 @@ public class BarraController {
             e.printStackTrace();
         } finally {
             rs2.close();
-            stmt.close();
         }
 
         return nom;
@@ -183,10 +184,9 @@ public class BarraController {
     private String buscarTaula(int id) throws SQLException {
         String nom = "";
         ResultSet rs2 = null;
-        Statement stmt = connexio();
 
         try {
-            rs2 = stmt.executeQuery("select nom from taules where id = " + id);
+            rs2 = con.queryDB("select nom from taules where id = " + id);
             while (rs2.next()) {
                 nom = rs2.getString("nom");
             }
@@ -194,7 +194,6 @@ public class BarraController {
             e.printStackTrace();
         } finally {
             rs2.close();
-            stmt.close();
         }
 
         return nom;
