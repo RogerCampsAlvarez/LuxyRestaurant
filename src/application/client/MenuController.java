@@ -21,11 +21,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- * 
- * @author Marc Vila
- *
- */
 public class MenuController {
 
 	@FXML private ListView lvPlats;
@@ -67,11 +62,6 @@ public class MenuController {
 
 	}
 
-	/**
-	 * Torna al Menú del client
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnBack(ActionEvent event) throws IOException {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
@@ -80,13 +70,6 @@ public class MenuController {
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_CLIENT);
 	}
 
-	/**
-	 * Event al clicar l'opció de primer plat
-	 * Genera una llista amb tots els primers plats
-	 * Acció al seleccionar un item de la llista
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnPrimerPlat(ActionEvent event) throws IOException {
 		obsListComanda.clear();
@@ -105,13 +88,6 @@ public class MenuController {
 		});
 	}
 
-	/**
-	 * Event al clicar l'opció de primer plat
-	 * Genera una llista amb tots els segons plats
-	 * Acció al seleccionar un item de la llista
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnSegonPlat(ActionEvent event) throws IOException {
 		obsListComanda.clear();
@@ -131,13 +107,6 @@ public class MenuController {
 		});
 	}
 
-	/**
-	 * Event al clicar l'opció de primer plat
-	 * Genera una llista amb tots els postres
-	 * Acció al seleccionar un item de la llista
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnPostres(ActionEvent event) throws IOException {
 		obsListComanda.clear();
@@ -157,10 +126,6 @@ public class MenuController {
 		});
 	}
 
-	/**
-	 * 
-	 * @param sTipus
-	 */
 	private void obternirPlats(String sTipus) {
 		String sQuery = "SELECT nom FROM plats WHERE quantitat > 0 AND tipus = '" + sTipus + "';";
 		try {
@@ -177,13 +142,6 @@ public class MenuController {
 		}
 	}
 
-	/**
-	 * Event al clicar l'opció de primer plat
-	 * Genera una llista amb tots els cafes / tees
-	 * Acció al seleccionar un item de la llista 
-	 * @param event
-	 * @throws IOException
-	 */
 	@FXML
 	void btnCafes(ActionEvent event) throws IOException {
 		obsListComanda.clear();

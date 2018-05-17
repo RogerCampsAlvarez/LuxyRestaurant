@@ -71,7 +71,7 @@ public class OpinionsController {
 	}
 
 	/**
-	 * Ompla la llista de plats de la comanda dels clients
+	 * Omple la llista de plats de la comanda dels clients
 	 */
 	private void omplirLlistaPlats() {
 		List<String> lsPlats = new ArrayList<>();

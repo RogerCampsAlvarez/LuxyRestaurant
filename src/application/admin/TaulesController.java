@@ -16,12 +16,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class TaulesController {
 
+	@FXML
+	private TextField tfNom;
+	@FXML
+	private TextField tfQtat;
 	@FXML
 	private Button btnBack;
 	@FXML
@@ -30,10 +35,19 @@ public class TaulesController {
 	private TableColumn<Taula, String> tcNom;
 	@FXML
 	private TableColumn<Taula, String> tcCapacitat;
+	@FXML
+	private Button btnAdd;
 
 	private ConnexioBD con;
 	ObservableList<Taula> olTaulesList = FXCollections.observableArrayList();
 
+	@FXML
+	void btnAdd(ActionEvent event) throws IOException {
+		String nom = tfNom.getText();
+		String cap = tfQtat.getText();
+		con.execDB(" insert into taules values ('"+nom+"','"+cap+"') ");
+	}
+	
 	@FXML
 	void btnBack(ActionEvent event) throws IOException {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/admin/MainAdmin.fxml"));

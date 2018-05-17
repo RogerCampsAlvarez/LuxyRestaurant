@@ -23,7 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Cuina {
+public class CuinaController {
 	@FXML
 	private Button btnBack;
 	ArrayList<Comanda> al = new ArrayList<Comanda>();
@@ -54,7 +54,8 @@ public class Cuina {
 	@FXML
 	public void clickItem(MouseEvent event) throws ClassNotFoundException, SQLException {
 		if (event.getClickCount() < 2) { // Checking double click
-			idSeleccionada = String.valueOf(taulesTableView.getSelectionModel().getSelectedItem().getId());
+			if(taulesTableView.getSelectionModel().getSelectedItem() != null)
+				idSeleccionada = String.valueOf(taulesTableView.getSelectionModel().getSelectedItem().getId());
 		} else {
 			acabarComanda(idSeleccionada);
 		}

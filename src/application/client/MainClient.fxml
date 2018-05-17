@@ -51,7 +51,6 @@
                </font>
             </Label>
             <Button fx:id="btnMenjar" mnemonicParsing="false" onAction="#cmdMenjar" prefHeight="65.0" prefWidth="606.0" text="Demanar Comanda" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Button fx:id="btnBeure" mnemonicParsing="false" onAction="#cmdBeure" prefHeight="65.0" prefWidth="609.0" text="Demanar Begudes" GridPane.columnSpan="2" GridPane.rowIndex="3" />
             <Button fx:id="btnOpinio" mnemonicParsing="false" onAction="#cmdOpinar" prefHeight="65.0" prefWidth="609.0" text="Opinar" GridPane.columnSpan="2" GridPane.rowIndex="4" />
          </children>
          <BorderPane.margin>

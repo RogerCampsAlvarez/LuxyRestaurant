@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 public class MainClientController {
 
 	@FXML private Button btnMenjar;
-	@FXML private Button btnBeure;
 	@FXML private Button btnBack;
 	@FXML private Button btnOpinio;
 	@FXML private MenuItem mnClose;
@@ -35,14 +34,6 @@ public class MainClientController {
 		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Menu.fxml"));
 		Scene scene = new Scene(root);
 		Util.openGUI(scene, stage, Strings.TITLE_CLIENT_MENU);	
-	}
-
-	@FXML
-	void cmdBeure(ActionEvent event) throws Exception {
-		Stage stage = (Stage) btnBeure.getScene().getWindow();
-		Pane root = FXMLLoader.load(getClass().getResource("/application/client/Beure.fxml"));
-		Scene scene = new Scene(root);
-		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);	
 	}
 	
 	@FXML
