@@ -16,7 +16,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -94,6 +97,9 @@ public class OpinionsController {
 		
 	}
 	
+	/**
+	 * Cerca les valoracions del plat
+	 */
 	private void cercarValoracions() {
 		obsListValoracions.clear();
 		
@@ -116,6 +122,10 @@ public class OpinionsController {
 		
 	}
 	
+	/**
+	 * Envia l'opinio del client.
+	 * @param ae
+	 */
 	@FXML
 	void onClickEnviar( ActionEvent ae ) {
 		String sOpinio = tAreaComentari.getText();
@@ -130,6 +140,7 @@ public class OpinionsController {
 			conDB.execDB(sQuery);
 			
 			suprimirPlatOpinat();
+			tAreaComentari.setText("");
 			
 		} catch (Exception e) {
 			
@@ -140,6 +151,9 @@ public class OpinionsController {
 		}
 	}
 	
+	/**
+	 * Elimina de la llista de plats per opinar el plat opinat
+	 */
 	private void suprimirPlatOpinat() {
 		
 		boolean bEliminar = true;
