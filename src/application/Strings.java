@@ -12,5 +12,4 @@ public class Strings {
 		TITLE_ADMIN_CUINA = "Cuina",
 		TITLE_ADMIN_BARRA = "Barra"
 		;
-		
 }

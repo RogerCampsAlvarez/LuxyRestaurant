@@ -25,7 +25,7 @@ public class AboutController {
 		Stage stage = (Stage) btnCloseAbout.getScene().getWindow();
 		stage.close();
 	}
-	
+
 	public void initialize(Stage aboutStage) {
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource("About.fxml"));

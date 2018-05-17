@@ -39,7 +39,7 @@ public class MainController {
 		Stage stage = (Stage) btnAdmin.getScene().getWindow();
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
 
-		//new MainAdminController().initialize(stage);
+		// new MainAdminController().initialize(stage);
 	}
 
 	@FXML

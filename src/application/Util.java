@@ -9,15 +9,15 @@ public class Util {
 
 	public static void openGUI(Scene scene, Stage stage, String title) {
 		Main.scene = scene;
-		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle(title);
 		stage.show();
 	}
-	
+
 	public static void openGUI(Scene scene, Stage stage, StageStyle style, String title) {
 		Main.scene = scene;
-		//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		// scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setTitle(title);
 		stage.initStyle(style);

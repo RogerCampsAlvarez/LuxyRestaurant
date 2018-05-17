@@ -20,7 +20,7 @@ public class SplashController {
 	Stage splashStage;
 	Stage loadStage = new Stage();
 	Stage nextStage = new Stage();
-	
+
 	static final int SPLASH_FADE_TIME = 400;
 
 	public void initialize(Stage primaryStage) {
@@ -93,11 +93,11 @@ public class SplashController {
 	}
 
 	protected void loadProgressBar() {
-		int w=255,h=20;
+		int w = 255, h = 20;
 		Pane root = new Pane();
 		Canvas canvas = new Canvas(w, h);
 		GraphicsContext gc = canvas.getGraphicsContext2D();
-		progres(gc,w,h);
+		progres(gc, w, h);
 
 		root.getChildren().add(canvas);
 		Scene scene = new Scene(root, w, h, Color.WHITESMOKE);
@@ -105,17 +105,17 @@ public class SplashController {
 		loadStage.setScene(scene);
 		loadStage.show();
 	}
-	
+
 	private void progres(GraphicsContext gc, int w, int h) {
-		new Thread() { //Thread per poder fer que es visualitzi mentres es carrega
-		//Platform.runLater(new Runnable() {
-		    @Override
-		    public void run() {
-				for (int x = 0; x <= w; x++) { //Green
-					gc.setFill(Color.rgb(0,255,0));
+		new Thread() { // Thread per poder fer que es visualitzi mentres es carrega
+			// Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				for (int x = 0; x <= w; x++) { // Green
+					gc.setFill(Color.rgb(0, 255, 0));
 					gc.fillRect(x, 1, 1, h);
-					
-					//Espera 5ms entre cada columna
+
+					// Espera 5ms entre cada columna
 					try {
 						Thread.sleep(SPLASH_FADE_TIME / w * 2);
 					} catch (InterruptedException e) {

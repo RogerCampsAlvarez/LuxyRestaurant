@@ -30,7 +30,7 @@ public class TaulesController {
 	private TableColumn<Taula, String> tcNom;
 	@FXML
 	private TableColumn<Taula, String> tcCapacitat;
-	
+
 	private ConnexioBD con;
 	ObservableList<Taula> olTaulesList = FXCollections.observableArrayList();
 
@@ -50,16 +50,16 @@ public class TaulesController {
 	private void loadTaules() {
 		try {
 			ResultSet rs = con.queryDB("select * from taules order by id asc");
-			
+
 			olTaulesList.clear();
 			while (rs.next()) { // Carrega els productes per categoria
-				olTaulesList.add(new Taula(/*rs.getInt("id")+*/ rs.getString("nom"), rs.getInt("persones")));
+				olTaulesList.add(new Taula(/* rs.getInt("id")+ */ rs.getString("nom"), rs.getInt("persones")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		//Linies necessaries per poder inserir valors a les cel·les
+		// Linies necessaries per poder inserir valors a les cel·les
 		tcNom.setCellValueFactory(new PropertyValueFactory<Taula, String>("nom"));
 		tcCapacitat.setCellValueFactory(new PropertyValueFactory<Taula, String>("capacitat"));
 
