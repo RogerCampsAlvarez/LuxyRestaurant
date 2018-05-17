@@ -27,7 +27,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import sun.net.util.IPAddressUtil;
-
+/**
+ * 
+ * @author Marc Vila
+ *
+ */
 public class OpinionsController {
 
 	@FXML private Button btnBack;
