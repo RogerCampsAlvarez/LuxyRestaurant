@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -37,7 +38,10 @@ public class TaulesController {
 	private TableColumn<Taula, String> tcCapacitat;
 	@FXML
 	private Button btnAdd;
-
+	@FXML
+	private Button btnDelete;
+	
+	private String nomSeleccionat;
 	private ConnexioBD con;
 	ObservableList<Taula> olTaulesList = FXCollections.observableArrayList();
 
@@ -46,6 +50,7 @@ public class TaulesController {
 		String nom = tfNom.getText();
 		String cap = tfQtat.getText();
 		con.execDB(" insert into taules values (default,'"+nom+"',"+cap+",1) ");
+		loadTaules();
 	}
 	
 	@FXML
@@ -55,12 +60,25 @@ public class TaulesController {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
 	}
-
+	
+	@FXML
+	void btnDelete(ActionEvent event) throws IOException {
+		con.execDB("DELETE FROM taules WHERE nom = '"+nomSeleccionat+"'");
+		loadTaules();
+	}
+	
+	@FXML
+	public void clickItem(MouseEvent event) throws ClassNotFoundException, SQLException {
+		if(taulesTableView.getSelectionModel().getSelectedItem() != null) {
+			nomSeleccionat = String.valueOf(taulesTableView.getSelectionModel().getSelectedItem().getNom());
+		}
+	}
+	
 	public void initialize() {
 		con = new ConnexioBD();
 		loadTaules();
 	}
-
+	
 	private void loadTaules() {
 		try {
 			ResultSet rs = con.queryDB("select * from taules order by id asc");

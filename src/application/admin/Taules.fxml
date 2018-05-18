@@ -30,7 +30,7 @@
          </font>
       </Label>
       <Button fx:id="btnBack" mnemonicParsing="false" onAction="#btnBack" prefHeight="83.0" prefWidth="325.0" text="Back" GridPane.rowIndex="8" />
-      <TableView fx:id="taulesTableView" prefHeight="9.0" prefWidth="290.0" GridPane.rowIndex="2" GridPane.rowSpan="5">
+      <TableView fx:id="taulesTableView" onMouseClicked="#clickItem" prefHeight="9.0" prefWidth="290.0" GridPane.rowIndex="2" GridPane.rowSpan="5">
          <columns>
             <TableColumn id="tcNom" fx:id="tcNom" prefWidth="75.0" text="NumTaula" />
             <TableColumn id="tcCapacitat" fx:id="tcCapacitat" prefWidth="75.0" text="Capacitat" />
@@ -40,6 +40,7 @@
       <TextField fx:id="tfNom" prefHeight="77.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <Label prefHeight="59.0" prefWidth="340.0" text="Quantitat" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextField fx:id="tfQtat" prefHeight="77.0" prefWidth="290.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDelete" prefHeight="86.0" prefWidth="304.0" text="Borrar" GridPane.columnIndex="1" GridPane.rowIndex="8" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
