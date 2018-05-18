@@ -45,7 +45,7 @@ public class TaulesController {
 	void btnAdd(ActionEvent event) throws IOException {
 		String nom = tfNom.getText();
 		String cap = tfQtat.getText();
-		con.execDB(" insert into taules values ('"+nom+"','"+cap+"') ");
+		con.execDB(" insert into taules values (default,'"+nom+"',"+cap+",1) ");
 	}
 	
 	@FXML
