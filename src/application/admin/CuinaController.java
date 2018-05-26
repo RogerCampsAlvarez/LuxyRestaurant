@@ -50,7 +50,13 @@ public class CuinaController {
 		Stage stage = (Stage) btnBack.getScene().getWindow();
 		Util.openGUI(scene, stage, Strings.TITLE_MAIN_ADMIN);
 	}
-
+	
+	/**
+	 * Al clicar la comanda 1 cop es seleciona(per borrarla despres i 2 es borra.
+	 * @param event
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	@FXML
 	public void clickItem(MouseEvent event) throws ClassNotFoundException, SQLException {
 		if (event.getClickCount() < 2) { // Checking double click
@@ -72,12 +78,18 @@ public class CuinaController {
 		al.clear();
 		load();
 	}
-
+	
 	@FXML
 	public void btnAcabarComanda(ActionEvent event) throws ClassNotFoundException, SQLException {
 		acabarComanda(idSeleccionada);
 	}
-
+	
+	/**
+	 * Posa el camp acabat_menjar en true un cop el cuiner ja l'ha descartat.
+	 * @param id
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	private void acabarComanda(String id) throws ClassNotFoundException, SQLException {
 		conDB = new ConnexioBD();
 
@@ -87,7 +99,12 @@ public class CuinaController {
 
 		conDB.desconnectarDB();
 	}
-
+	
+	/**
+	 * Carrega una llista de comandes fent un select a la bd.
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	private void load() throws ClassNotFoundException, SQLException {
 
 		new Thread() {

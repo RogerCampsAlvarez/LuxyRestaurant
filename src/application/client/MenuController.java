@@ -214,8 +214,8 @@ public class MenuController {
 		int iBeguda = obtenirID(MainClientController.comClient.getsBeguda());
 
 		//VariablesBaseDades vBD = new VariablesBaseDades();
-		String sQuery = "INSERT INTO comandes(taula, primer, segon, postre, beguda, acavat)" + "VALUES (0, '"
-				+ iPrimerPlat + "','" + iSegonPlat + "', '" + iPostres + "', '" + iBeguda + "', FALSE);";
+		String sQuery = "INSERT INTO comandes(taula, primer, segon, postre, beguda, acabat_menjar, acabat_beguda)" + "VALUES (0,"
+				+ iPrimerPlat + "," + iSegonPlat + "," + iPostres + ", " + iBeguda + ", FALSE,FALSE);";
 
 		try {
 			conDB = new ConnexioBD();
